@@ -23,13 +23,12 @@ jobs:
         with:
           node-version: 20
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v2
         with:
           version: 9
 
       - run: pnpm install
       - run: pnpm build
-
 
       - uses: actions/upload-pages-artifact@v3
         with:
