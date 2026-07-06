@@ -1,0 +1,99 @@
+ .skills {
+   padding: 120px 0;
+   background: var(--bg-secondary);
+   position: relative;
+   border-top: 1px solid var(--border-gold);
+   border-bottom: 1px solid var(--border-gold);
+ }
+ 
+ .skills-header {
+   margin-bottom: 4rem;
+ }
+ 
+ .skills-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 1.5rem;
+ }
+ 
+ .skill-card {
+   background: var(--bg-card);
+   border: 1px solid var(--border-gold);
+   border-radius: 6px;
+   padding: 1.75rem;
+   transition: all 0.3s ease;
+   animation: fadeUp 0.6s ease-out calc(var(--index, 0) * 0.1s) both;
+ }
+ 
+ .skill-card:hover {
+   border-color: var(--border-gold-light);
+   transform: translateY(-3px);
+   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+   background: var(--bg-card-hover);
+ }
+ 
+ .skill-card-header {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 1.25rem;
+   padding-bottom: 1rem;
+   border-bottom: 1px solid var(--border-gold);
+ }
+ 
+ .skill-icon {
+   font-size: 1.25rem;
+   width: 36px;
+   height: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid var(--accent-gold-dim);
+   border-radius: 4px;
+   color: var(--accent-gold);
+   flex-shrink: 0;
+ }
+ 
+ .skill-category-title {
+   font-size: 1rem;
+   font-weight: 600;
+   letter-spacing: -0.01em;
+ }
+ 
+ .skill-list {
+   list-style: none;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+ }
+ 
+ .skill-item {
+   font-size: 0.8rem;
+   color: var(--text-secondary);
+   padding: 0.3rem 0.75rem;
+   background: rgba(201, 168, 76, 0.04);
+   border: 1px solid var(--border-gold);
+   border-radius: 3px;
+   transition: all 0.2s ease;
+ }
+ 
+ .skill-item:hover {
+   color: var(--accent-gold-light);
+   border-color: var(--accent-gold-dim);
+   background: rgba(201, 168, 76, 0.08);
+ }
+ 
+ @media (max-width: 1024px) {
+   .skills-grid {
+     grid-template-columns: repeat(2, 1fr);
+   }
+ }
+ 
+ @media (max-width: 768px) {
+   .skills {
+     padding: 80px 0;
+   }
+   .skills-grid {
+     grid-template-columns: 1fr;
+   }
+ }

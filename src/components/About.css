@@ -1,0 +1,159 @@
+ .about {
+   padding: 120px 0;
+   background: var(--bg-secondary);
+   position: relative;
+   border-top: 1px solid var(--border-gold);
+   border-bottom: 1px solid var(--border-gold);
+ }
+ 
+ .about-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 80px;
+   align-items: center;
+ }
+ 
+ .about-visual {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 2rem;
+ }
+ 
+ .avatar-frame {
+   position: relative;
+ }
+ 
+ .avatar-placeholder {
+   width: 240px;
+   height: 240px;
+   border-radius: 50%;
+   background: var(--bg-tertiary);
+   border: 1px solid var(--border-gold-light);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   overflow: hidden;
+ }
+ 
+ .avatar-placeholder::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   background: radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.08), transparent 70%);
+ }
+ 
+ .avatar-initials {
+   font-size: 5rem;
+   font-weight: 800;
+   background: linear-gradient(135deg, var(--accent-gold-light), var(--accent-gold));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   z-index: 1;
+ }
+ 
+ .avatar-ring {
+   position: absolute;
+   inset: -6px;
+   border-radius: 50%;
+   border: 1px solid var(--accent-gold-dim);
+   animation: ringPulse 3s ease-in-out infinite;
+ }
+ 
+ @keyframes ringPulse {
+   0%, 100% { opacity: 0.3; transform: scale(1); }
+   50% { opacity: 0.6; transform: scale(1.04); }
+ }
+ 
+ .contact-mini {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+ }
+ 
+ .contact-mini-item {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   color: var(--text-secondary);
+   font-size: 0.85rem;
+ }
+ 
+ .contact-mini-item svg {
+   color: var(--accent-gold);
+   flex-shrink: 0;
+ }
+ 
+ .about-info {
+   animation: fadeUp 0.8s ease-out;
+ }
+ 
+ .about-description {
+   color: var(--text-secondary);
+   font-size: 1rem;
+   line-height: 1.8;
+   margin-bottom: 1.25rem;
+ }
+ 
+ .about-description em {
+   color: var(--accent-gold-light);
+   font-style: italic;
+ }
+ 
+ .about-stats {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 1rem;
+   margin-top: 2rem;
+   padding-top: 2rem;
+   border-top: 1px solid var(--border-gold);
+ }
+ 
+ .stat-item {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+ }
+ 
+ .stat-value {
+   font-size: 1.75rem;
+   font-weight: 700;
+   color: var(--accent-gold);
+   line-height: 1;
+ }
+ 
+ .stat-label {
+   font-size: 0.75rem;
+   color: var(--text-muted);
+   letter-spacing: 1px;
+   text-transform: uppercase;
+ }
+ 
+ @media (max-width: 1024px) {
+   .about-grid {
+     grid-template-columns: 1fr;
+     gap: 40px;
+   }
+   .about-visual {
+     order: -1;
+   }
+   .about-stats {
+     grid-template-columns: repeat(2, 1fr);
+   }
+ }
+ 
+ @media (max-width: 768px) {
+   .about {
+     padding: 80px 0;
+   }
+   .avatar-placeholder {
+     width: 160px;
+     height: 160px;
+   }
+   .avatar-initials {
+     font-size: 3.5rem;
+   }
+ }
