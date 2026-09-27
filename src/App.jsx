@@ -61,18 +61,20 @@ const amberStudies = [
   {
     number: '04',
     title: 'AOE Falling Attack',
-    date: '10 Sep 2026',
-    status: 'In progress',
-    tools: 'Unreal Engine · Niagara Fluids',
+    date: '10–26 Sep 2026',
+    status: 'Current build',
+    tools: 'Unreal Engine 5.6 · Niagara · Niagara Fluids · Materials',
     images: [
-      { src: `${base}last-amber-aoe-falling.png`, label: 'Current falling column and impact-ring test' },
+      { src: `${base}last-amber-aoe-falling.png`, label: 'Falling column, warning rings and impact-centre test' },
     ],
-    goal: 'Make a large falling attack with a warning area, a red-and-black energy column, a ground hit and spreading fog. The player should see where it will land before the impact.',
-    work: 'I planned the effect in separate parts and built the falling column, impact ring, flash and fog while adjusting colour, transparency, distortion, size and timing.',
-    process: 'I split the attack into a warning area, falling column, impact ring, impact flash and fog after the hit. Niagara controls the column’s position, size, colour and lifetime.',
-    problem: 'A basic cone repeated the texture on every side and did not have enough vertices for smooth WPO movement. Sprites and crossed planes were easier to control, but they looked flat from the side and could not expand in every direction.',
-    changes: 'I tested World Aligned Texture and horizontal and vertical distortion, then moved from cones and billboards to Niagara Fluids Grid3D Gas for full volumetric fog. The column, ring and flash stay separate so I can control their timing.',
-    result: 'The falling column, impact ring, flash and first material tests are complete. The Grid3D fog, final timing and in-level testing are still in progress.',
+    goal: 'Make a large falling attack that warns the player before impact, then carries the red-and-black energy from the vertical column into a fast ground-level spread.',
+    work: 'I built the warning rings, falling column, impact flash, a three-dimensional ground-flare mesh and the post-impact volumetric fog. I also tuned their position, colour, opacity, distortion, scale and timing as separate Niagara emitters.',
+    process: 'The effect starts with the ground warning, brings the column down at the centre, opens its lower section into radial energy strands and then releases Grid3D Gas fog after impact. Keeping these parts separate lets me change the anticipation, hit and dissipation without rebuilding the whole system.',
+    problem: 'A stock cone repeated the texture on every face, while camera-facing sprites and crossed planes looked flat from side angles. The column also needed to bend continuously into the ground spread rather than ending above a separate smoke burst.',
+    changes: 'I replaced the cone with a custom cylindrical mesh and used World Position Offset to push its lower vertices outward in 360 degrees. Animated noise breaks the surface into irregular red strands with black gaps. A delayed Niagara Fluids simulation adds short-lived volumetric spread after the mesh impact instead of carrying the whole shape with sprites.',
+    result: 'The current system compiles and plays as one centred impact: warning rings, red-black falling column, radial ground flare and fast-dissipating volumetric fog. It has been migrated into the main VFX project with its Niagara Fluids dependency restored; final boss-arena timing and gameplay readability still need an in-level pass.',
+    noteLabel: 'Migration note',
+    note: 'The target project must enable Niagara Fluids before migration. Without it, the Grid3D emitters lose their plugin scripts and report unknown-function errors even though the migrated Niagara asset itself is present.',
   },
 ]
 
@@ -263,7 +265,7 @@ function WorkIndex() {
               <dl>
                 <div><dt>My role</dt><dd>Real-time VFX artist</dd></div>
                 <div><dt>Main challenge</dt><dd>Keep attacks easy to see inside a dark, fog-heavy boss fight.</dd></div>
-                <div><dt>What I made</dt><dd>Fog, blade light and blade slash are in the level. The AOE attack is still in progress.</dd></div>
+                <div><dt>What I made</dt><dd>Fog, blade light and blade slash are in the level. The current AOE build combines a falling column, radial ground flare and volumetric impact fog.</dd></div>
               </dl>
               <a className="case-link" href="#/last-amber">View full case study <span>→</span></a>
             </div>
@@ -340,7 +342,7 @@ function ProcessStudy({ study, compact = false }) {
       <dl className="process-details">
         {details.map(([label, copy]) => <div key={label}><dt>{label}</dt><dd>{copy}</dd></div>)}
       </dl>
-      {study.note && <aside className="process-note"><span>Player version</span><p>{study.note.replace('Player variant: ', '')}</p></aside>}
+      {study.note && <aside className="process-note"><span>{study.noteLabel || 'Player version'}</span><p>{study.note.replace('Player variant: ', '')}</p></aside>}
     </section>
   )
 }
@@ -426,7 +428,7 @@ function LastAmber() {
           <dl><div><dt>Key features</dt><dd>Uneven horns, black armour and one burning red side make the corruption visible before the fight starts.</dd></div><div><dt>VFX link</dt><dd>Red blade energy, black outer flames and wide attacks make him feel larger and more dangerous than the player.</dd></div></dl>
         </article>
       </div>
-      <aside className="authorship-note"><span>My role</span><p>The scene and character concepts show the team’s shared art direction. My own work is the real-time VFX shown below, including the fog, blade effects and AOE tests.</p></aside>
+      <aside className="authorship-note"><span>My role</span><p>The scene and character concepts show the team’s shared art direction. My own work is the real-time VFX shown below, including the fog, blade effects and the current AOE build.</p></aside>
       <div className="case-heading">
         <span>VFX development</span>
         <p>The work below shows how I built and changed each effect, from the first test to the version used in the level.</p>
@@ -564,7 +566,7 @@ function About() {
       <div className="about-grid">
         <h2>Gameplay systems, level prototypes and real-time VFX.</h2>
         <div>
-          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed environmental fog, blade light, blade slash and an in-progress AOE attack in Unreal Engine. In Ready to Die, I prototyped movement, death, respawn and death-triggered world changes in Unity.</p>
+          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed environmental fog, blade light, blade slash and a multi-stage AOE attack in Unreal Engine. In Ready to Die, I prototyped movement, death, respawn and death-triggered world changes in Unity.</p>
           <a className="text-link" href="https://github.com/even002" target="_blank" rel="noreferrer">View GitHub <ArrowIcon /></a>
         </div>
       </div>
