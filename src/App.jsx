@@ -65,7 +65,10 @@ const amberStudies = [
     status: 'Current build',
     tools: 'Unreal Engine 5.6 · Niagara · Niagara Fluids · Materials',
     images: [
-      { src: `${base}last-amber-aoe-falling.png`, label: 'Falling column, warning rings and impact-centre test' },
+      { src: `${base}aoe-sequence-01-targeting-columns.png`, label: '01 · Thin targeting columns gather at the centre' },
+      { src: `${base}aoe-sequence-02-warning-ring.png`, label: '02 · Warning ring and centre marker appear' },
+      { src: `${base}aoe-sequence-03-falling-column.png`, label: '03 · Falling column reaches the marked area' },
+      { src: `${base}aoe-sequence-04-ground-impact.png`, label: '04 · Red-and-black energy spreads across the ground' },
     ],
     goal: 'Make a large falling attack that warns the player before impact, then carries the red-and-black energy from the vertical column into a fast ground-level spread.',
     work: 'I built the warning rings, falling column, impact flash, a three-dimensional ground-flare mesh, post-impact volumetric fog and a group of thin targeting columns that spiral into the centre.',
@@ -344,7 +347,7 @@ function ProcessStudy({ study, compact = false }) {
   ]
 
   return (
-    <section className={`process-study${compact ? ' compact' : ''}`}>
+    <section className={`process-study${compact ? ' compact' : ''}${study.title === 'AOE Falling Attack' ? ' aoe-sequence-study' : ''}`}>
       <header className="process-study-header">
         <div><p>{study.tools}</p><h3>{study.title}</h3></div>
         <div className="process-status"><span>{study.date}</span><strong className={study.status.toLowerCase().includes('progress') ? 'progress' : ''}>{study.status}</strong></div>
