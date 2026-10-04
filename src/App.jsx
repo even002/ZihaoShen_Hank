@@ -88,7 +88,8 @@ const amberStudies = [
     images: [
       { src: `${base}better-fog-veil.png`, label: 'Main veil texture · broad, low-contrast fog layer' },
       { src: `${base}better-fog-wisps.png`, label: 'Ground wisps texture · narrow moving detail' },
-      { src: `${base}better-fog-detail-noise.png`, label: 'Detail noise · breaks up repeated shapes' },
+      { src: `${base}better-fog-scene-warm-grey.png`, label: 'Warm-grey test · distant red effects remain visible' },
+      { src: `${base}better-fog-scene-dark-red.png`, label: 'Dark-red test · fog changes the scene mood and depth' },
     ],
     goal: 'Build dense environmental fog that feels fine and natural rather than like a group of smoke clouds, while keeping the player and nearby fire readable.',
     work: 'I made the texture set, material instances and a two-emitter Niagara system, then combined it with Exponential Height Fog and Volumetric Fog in a separate test map.',
@@ -347,7 +348,7 @@ function ProcessStudy({ study, compact = false }) {
   ]
 
   return (
-    <section className={`process-study${compact ? ' compact' : ''}${study.title === 'AOE Falling Attack' ? ' aoe-sequence-study' : ''}`}>
+    <section className={`process-study${compact ? ' compact' : ''}${study.title === 'AOE Falling Attack' ? ' aoe-sequence-study' : ''}${study.title === 'Better Fog System' ? ' better-fog-study' : ''}`}>
       <header className="process-study-header">
         <div><p>{study.tools}</p><h3>{study.title}</h3></div>
         <div className="process-status"><span>{study.date}</span><strong className={study.status.toLowerCase().includes('progress') ? 'progress' : ''}>{study.status}</strong></div>
