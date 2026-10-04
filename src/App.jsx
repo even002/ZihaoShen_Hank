@@ -293,7 +293,7 @@ function WorkIndex() {
         </article>
         <article className="secondary-project">
           <a className="secondary-project-media" href="#/ready-to-die" aria-label="Open Ready to Die case study">
-            <img src={`${base}die-again-graybox.png`} alt="Ready to Die Unity greybox level" />
+            <img src={`${base}ready-to-die-player-view.png`} alt="Ready to Die greybox prototype viewed from behind the player character" />
           </a>
           <div className="secondary-project-copy">
             <span className="card-type">Unity · Gameplay Systems</span>
