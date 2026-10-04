@@ -61,20 +61,40 @@ const amberStudies = [
   {
     number: '04',
     title: 'AOE Falling Attack',
-    date: '10–26 Sep 2026',
+    date: '10–29 Sep 2026',
     status: 'Current build',
     tools: 'Unreal Engine 5.6 · Niagara · Niagara Fluids · Materials',
     images: [
       { src: `${base}last-amber-aoe-falling.png`, label: 'Falling column, warning rings and impact-centre test' },
     ],
     goal: 'Make a large falling attack that warns the player before impact, then carries the red-and-black energy from the vertical column into a fast ground-level spread.',
-    work: 'I built the warning rings, falling column, impact flash, a three-dimensional ground-flare mesh and the post-impact volumetric fog. I also tuned their position, colour, opacity, distortion, scale and timing as separate Niagara emitters.',
-    process: 'The effect starts with the ground warning, brings the column down at the centre, opens its lower section into radial energy strands and then releases Grid3D Gas fog after impact. Keeping these parts separate lets me change the anticipation, hit and dissipation without rebuilding the whole system.',
+    work: 'I built the warning rings, falling column, impact flash, a three-dimensional ground-flare mesh, post-impact volumetric fog and a group of thin targeting columns that spiral into the centre.',
+    process: 'The effect starts with the ground warning and thin vertical columns. The columns rotate and move into the centre before the main strike, then the falling column opens into radial ground energy and releases Grid3D Gas fog after impact. Each stage stays in a separate Niagara emitter so I can tune the warning, hit and fade independently.',
     problem: 'A stock cone repeated the texture on every face, while camera-facing sprites and crossed planes looked flat from side angles. The column also needed to bend continuously into the ground spread rather than ending above a separate smoke burst.',
-    changes: 'I replaced the cone with a custom cylindrical mesh and used World Position Offset to push its lower vertices outward in 360 degrees. Animated noise breaks the surface into irregular red strands with black gaps. A delayed Niagara Fluids simulation adds short-lived volumetric spread after the mesh impact instead of carrying the whole shape with sprites.',
-    result: 'The current system compiles and plays as one centred impact: warning rings, red-black falling column, radial ground flare and fast-dissipating volumetric fog. It has been migrated into the main VFX project with its Niagara Fluids dependency restored; final boss-arena timing and gameplay readability still need an in-level pass.',
+    changes: 'I replaced the cone with a custom cylindrical mesh and used World Position Offset to push its lower vertices outward in 360 degrees. Animated noise breaks the surface into irregular red strands with black gaps. For the targeting stage, I replaced custom HLSL with Niagara curve, lerp and position modules so the columns converge cleanly without a handwritten expression.',
+    result: 'The current system compiles and plays as one centred impact. The thin columns meet at the centre at about 0.83–0.90 seconds and disappear at about 1.08–1.12 seconds before the main hit. The system has been saved and migrated with its Niagara Fluids dependency restored. A final boss-arena readability pass and a test away from the world origin are still needed.',
     noteLabel: 'Migration note',
     note: 'The target project must enable Niagara Fluids before migration. Without it, the Grid3D emitters lose their plugin scripts and report unknown-function errors even though the migrated Niagara asset itself is present.',
+  },
+  {
+    number: '05',
+    title: 'Better Fog System',
+    date: '02–04 Oct 2026',
+    status: 'In testing',
+    tools: 'Unreal Engine 5.6 · Niagara · Blueprint · Volumetric Fog',
+    images: [
+      { src: `${base}better-fog-veil.png`, label: 'Main veil texture · broad, low-contrast fog layer' },
+      { src: `${base}better-fog-wisps.png`, label: 'Ground wisps texture · narrow moving detail' },
+      { src: `${base}better-fog-detail-noise.png`, label: 'Detail noise · breaks up repeated shapes' },
+    ],
+    goal: 'Build dense environmental fog that feels fine and natural rather than like a group of smoke clouds, while keeping the player and nearby fire readable.',
+    work: 'I made the texture set, material instances and a two-emitter Niagara system, then combined it with Exponential Height Fog and Volumetric Fog in a separate test map.',
+    process: 'The main atmosphere comes from the engine fog, while Niagara adds a small amount of movement. Fog_MainBody uses large, soft cards. Fog_GroundWisps uses thinner cards close to the ground with slow velocity, drag and a fade at both ends of the particle lifetime.',
+    problem: 'The first texture direction looked too much like rolling smoke. A Niagara-only solution also could not create the same depth across the whole level.',
+    changes: 'I changed the texture set to a softer veil, narrow ground wisps and low-frequency noise. The test map uses warm grey global fog with low-alpha Niagara layers, so the distant scene fades while nearby torches remain visible.',
+    result: 'The two Niagara layers compile and the combined fog is visible in the test map. The reusable Blueprint fade controller has been connected for density and emissive, but its final runtime test, Niagara fade sync and boss-arena tuning are still in progress.',
+    noteLabel: 'Current boundary',
+    note: 'This is a working environment test, not the final Last Amber arena pass. The current controller starts on BeginPlay; player-entry triggering and cross-project migration still need to be tested.',
   },
 ]
 
@@ -278,7 +298,7 @@ function WorkIndex() {
           <div className="secondary-project-copy">
             <span className="card-type">Unity · Gameplay Systems</span>
             <h3>Ready to Die</h3>
-            <p>A playable greybox where the game remembers a death, respawns the player and opens a new route.</p>
+            <p>A playable tutorial-level greybox where the game remembers a death, respawns the player and opens one new route.</p>
             <a className="case-link" href="#/ready-to-die">View case study <span>→</span></a>
           </div>
         </article>
@@ -447,11 +467,11 @@ function ReadyToDie() {
     <article className="project section project-detail" id="ready-to-die">
       <ProjectHeader title="Ready to Die" discipline="Gameplay Systems · Level Prototype" />
       <div className="project-intro">
-        <div className="intro-lead"><p>A third-person platforming prototype that asks a simple question: what if failure changed the level instead of erasing progress?</p></div>
+        <div className="intro-lead"><p>A one-level third-person platforming prototype that asks a simple question: what if failure changed the level instead of erasing progress?</p></div>
         <dl className="facts">
           <div><dt>Engine</dt><dd>Unity 6000.4.0f1</dd></div>
           <div><dt>Platform</dt><dd>PC</dd></div>
-          <div><dt>State</dt><dd>Playable greybox prototype</dd></div>
+          <div><dt>State</dt><dd>Playable tutorial-level prototype</dd></div>
           <div><dt>My role</dt><dd>Concept, systems, level blockout</dd></div>
         </dl>
       </div>
@@ -542,8 +562,8 @@ function ReadyToDie() {
       <section className="ready-resolution">
         <span>Current build</span>
         <div>
-          <h3>A complete mechanic, tested at greybox scale</h3>
-          <p>The current build connects movement, death, respawn, lighting changes, the bridge and a transition to the next scene. The second level is still an early test, not finished content.</p>
+          <h3>One tutorial level built to test the mechanic</h3>
+          <p>The current prototype connects movement, death, respawn, lighting changes and the bridge inside one short tutorial level. A scene transition exists as a technical test, but the project does not contain a finished second level.</p>
         </div>
         <div>
           <h3>What I learned</h3>
@@ -566,7 +586,7 @@ function About() {
       <div className="about-grid">
         <h2>Gameplay systems, level prototypes and real-time VFX.</h2>
         <div>
-          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed environmental fog, blade light, blade slash and a multi-stage AOE attack in Unreal Engine. In Ready to Die, I prototyped movement, death, respawn and death-triggered world changes in Unity.</p>
+          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed blade effects, a multi-stage AOE attack and environmental fog tests in Unreal Engine. In Ready to Die, I built one tutorial-level Unity prototype around movement, death, respawn and a death-triggered bridge.</p>
           <a className="text-link" href="https://github.com/even002" target="_blank" rel="noreferrer">View GitHub <ArrowIcon /></a>
         </div>
       </div>
