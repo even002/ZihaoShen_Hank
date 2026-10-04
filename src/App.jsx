@@ -488,8 +488,8 @@ function ReadyToDie() {
         ))}
       </div>
       <figure className="prototype-media">
-        <img src={`${base}die-again-graybox.png`} alt="Ready to Die Unity greybox level" loading="lazy" />
-        <figcaption>Current Unity greybox — playable level prototype</figcaption>
+        <img src={`${base}ready-to-die-player-view.png`} alt="Ready to Die greybox prototype viewed from behind the player character" loading="lazy" />
+        <figcaption>Player view in the current Unity greybox</figcaption>
       </figure>
       <div className="case-heading">
         <span>Building the prototype</span>
@@ -524,6 +524,22 @@ function ReadyToDie() {
           </section>
         ))}
       </div>
+
+      <div className="case-heading">
+        <span>Map preview</span>
+        <p>These Unity Scene views show the same route before and after a recorded death changes the level.</p>
+      </div>
+      <section className="ready-map-preview" aria-label="Ready to Die map state comparison">
+        <figure>
+          <img src={`${base}ready-to-die-map-before-death.png`} alt="Unity Scene view of the route before death, with a gap between platforms" loading="lazy" />
+          <figcaption><strong>Before death</strong><span>The route is broken and cannot be crossed.</span></figcaption>
+        </figure>
+        <figure>
+          <img src={`${base}ready-to-die-map-after-death.png`} alt="Unity Scene view of the route after death, with the bridge section enabled" loading="lazy" />
+          <figcaption><strong>After death</strong><span>The bridge section is enabled and opens the next route.</span></figcaption>
+        </figure>
+      </section>
+      <p className="ready-map-note">Development view: the yellow colour in the second image is Unity’s selection highlight, not the final appearance of the level.</p>
 
       <div className="case-heading">
         <span>Changes in the level</span>

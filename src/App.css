@@ -285,6 +285,13 @@ figcaption { padding: 13px 14px; background: var(--surface); color: var(--muted)
 .ready-pipeline h3 { margin: 10px 0 14px; font-size: 1.45rem; font-weight: 550; }
 .ready-pipeline p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.68; }
 .ready-pipeline section:not(:last-child)::after { content: ''; position: absolute; z-index: 2; top: 28px; right: -5px; width: 8px; height: 8px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); background: var(--surface); transform: rotate(45deg); }
+.ready-map-preview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.ready-map-preview figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-top: 2px solid var(--gold); background: var(--surface); }
+.ready-map-preview img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; }
+.ready-map-preview figcaption { display: grid; grid-template-columns: .32fr 1fr; gap: 22px; align-items: start; min-height: 92px; padding: 20px 22px; text-transform: none; }
+.ready-map-preview figcaption strong { color: var(--gold); font-size: .7rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.ready-map-preview figcaption span { color: var(--muted); font-size: .88rem; letter-spacing: 0; line-height: 1.6; }
+.ready-map-note { margin: 14px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.6; }
 .ready-responses { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .ready-responses > section { padding: 32px; border: 1px solid var(--line); border-top: 2px solid var(--gold); background: linear-gradient(145deg, rgba(17,17,26,.94), rgba(10,10,15,.72)); }
 .ready-responses > section > span { color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
@@ -423,6 +430,8 @@ footer span:first-child { color: var(--text); }
   .ready-pipeline section:last-child { border-bottom: 0; }
   .ready-pipeline section::after { display: none; }
   .ready-pipeline h3 { margin-top: 28px; }
+  .ready-map-preview { grid-template-columns: 1fr; }
+  .ready-map-preview figcaption { grid-template-columns: 1fr; gap: 7px; min-height: 0; }
   .ready-resolution > span { grid-column: auto; }
   .ready-brainstorm { grid-template-columns: 1fr; }
   .ready-brainstorm article, .ready-brainstorm article:nth-child(4), .ready-brainstorm article:nth-child(5) { grid-column: auto; min-height: 0; padding: 24px 19px; }
