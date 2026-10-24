@@ -94,7 +94,7 @@ export default function ReadyToDieCase() {
       <h4>What comes next</h4><p>The next tasks are shooting and enemies in Level 2, followed by the final boss level and story ending. The revival minigame comes after those: players would complete a simple 2D game to earn a revival coin. I have considered sharing three chances across all three levels, but have not decided where the player restarts when these run out. Final assets, environmental changes and full playtesting are also still ahead.</p>
     </Chapter>
     <Chapter id="credits" number="07" title="My role and asset credits">
-      <p>I developed the game concept, level flow, puzzle design and most of the Level 1 whitebox. I work in Unity, try the interactions and adjust them based on what I find. I used AI assistance for code, parts of the interaction UI and the Level 2 whitebox.</p><p>The layout reference images were AI-generated; the actual scenes still needed building and adjusting in Unity. The computer currently uses a Windows default wallpaper. Most of the environment is still whitebox geometry and will be replaced with final assets.</p>
+      <p>I developed the game concept, level flow, puzzle design and most of the Level 1 whitebox. I work in Unity, try the interactions and adjust them based on what I find. I used AI assistance during development.</p><p>The computer currently uses a Windows default wallpaper. Most of the environment is still whitebox geometry and will be replaced with final assets.</p>
     </Chapter>
   </article>
 }
