@@ -21,11 +21,11 @@ function Flow({ steps }) {
   return <ol className="rtd-flow">{steps.map((step,i)=><li key={step}><span>{String(i+1).padStart(2,'0')}</span>{step}</li>)}</ol>
 }
 const milestones = [
-  ['20 Oct','Planning the game','Chose death as the main theme. Left the revival minigame for later so I could focus on the main levels first.'],
-  ['21 Oct','Building Level 1','Blocked out the hall, the parkour route on the right and the offices on the left. The offices connect to the hall through one central doorway.'],
-  ['22–23 Oct','Adding the interactions','Adjusted movement and added collapsing platforms, pickups, power, the computer, the safe, bomb assembly, the breakable wall and the door.'],
-  ['24 Oct','Building Level 2','Connected the first level to the second, blocked out the floodgate area and added two parkour sections.'],
-  ['25 Oct','Adding platform supports','Added bases, columns and side walls to bring the parkour areas closer to the reference image.'],
+  ['Planning the game','Chose death as the main theme. Left the revival minigame for later so I could focus on the main levels first.'],
+  ['Building Level 1','Blocked out the hall, the parkour route on the right and the offices on the left. The offices connect to the hall through one central doorway.'],
+  ['Adding the interactions','Adjusted movement and added collapsing platforms, pickups, power, the computer, the safe, bomb assembly, the breakable wall and the door.'],
+  ['Building Level 2','Connected the first level to the second, blocked out the floodgate area and added two parkour sections.'],
+  ['Adding platform supports','Added bases, columns and side walls to bring the parkour areas closer to the reference image.'],
 ]
 const status = [
   ['Tutorial','Prototype built','Movement, death and respawning work. Dying in a specific area makes a bridge appear.'],
@@ -85,7 +85,7 @@ export default function ReadyToDieCase() {
     </Chapter>
     <Chapter id="iteration" number="05" title="Recent changes">
       <div className="rtd-grid rtd-cards"><section><h4>Jumping and dashing</h4><p>Movement in the air was too loose, and the gravity and jump distance did not feel right. I adjusted air steering, gravity and falling speed. Dashing sometimes sent the character diagonally forwards, so I changed it to follow the direction they face. Walking, running, jumping and dashing are all still available.</p><small>These changes came from problems I noticed while playing. I still need feedback from other players.</small></section><section><h4>The crafting message</h4><p>Crafting the bomb used to display a huge ASSEMBLED label across the hall. I replaced it with a short message at the bottom of the screen that disappears after a few seconds.</p></section></div>
-      <ol className="rtd-timeline">{milestones.map(([date,title,copy])=><li key={date}><time>{date}</time><div><h4>{title}</h4><p>{copy}</p></div></li>)}</ol>
+      <ol className="rtd-timeline">{milestones.map(([title,copy])=><li key={title}><div><h4>{title}</h4><p>{copy}</p></div></li>)}</ol>
       <details className="rtd-early"><summary>Other ideas I considered</summary><p>Early ideas included limiting the number of steps, making enemies attack each other, searching for items while being chased, and escaping before finding a weapon to fight back. I also considered multiple worlds and endings. I decided to focus on changes after death first, so these other ideas have not been built.</p><p>The office puzzle originally involved staff records and identity checks. The current version is simpler: find a fuse, turn on the computer, read the code and collect the timer from the safe.</p></details>
     </Chapter>
     <Chapter id="status" number="06" title="Current progress">
