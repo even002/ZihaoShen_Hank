@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import ReadyToDieCase from './components/ReadyToDieCase'
 
 const base = '/ZihaoShen_Hank/assets/portfolio/'
 
@@ -99,71 +100,6 @@ const amberStudies = [
     result: 'The two Niagara layers compile and the combined fog is visible in the test map. The reusable Blueprint fade controller has been connected for density and emissive, but its final runtime test, Niagara fade sync and boss-arena tuning are still in progress.',
     noteLabel: 'Current boundary',
     note: 'This is a working environment test, not the final Last Amber arena pass. The current controller starts on BeginPlay; player-entry triggering and cross-project migration still need to be tested.',
-  },
-]
-
-const readyFoundation = [
-  {
-    number: '01', eyebrow: 'Player movement', title: 'Build movement the player can rely on',
-    copy: 'Before testing death as a mechanic, the platforming had to feel predictable. I built camera-relative movement, smooth facing, run, jump and dash around Unity’s CharacterController.',
-    decision: 'A 0.15-second Coyote Time helps when the player jumps just after leaving an edge. Dash duration and cooldown make recovery useful without removing the risk of a jump.',
-    outcome: 'The player can read the space, commit to a jump and understand whether a failure came from the level or from their own timing.',
-  },
-  {
-    number: '02', eyebrow: 'Death system', title: 'Save each death and use it again',
-    copy: 'Falling below the level or entering a hazard begins one shared death sequence. The system pauses control, records the event, moves the player to the active checkpoint and then restores play.',
-    decision: 'Teleporting while CharacterController and leftover velocity were still active caused sliding and repeated deaths. I disabled the controller, cleared the velocity and turned each part back on in a fixed order.',
-    outcome: 'Respawning became stable, and the saved death data could also change lighting, level objects and progress.',
-  },
-]
-
-const readyDeathFlow = [
-  { number: '01', title: 'Detect', copy: 'Falling below the level or entering a hazard ends the current attempt.' },
-  { number: '02', title: 'Record', copy: 'The system stores the death count and the area in which the player failed.' },
-  { number: '03', title: 'Respawn', copy: 'Control pauses, velocity resets and the player returns to the active checkpoint.' },
-  { number: '04', title: 'Change the level', copy: 'The level reads the saved death data and makes a visible change.' },
-]
-
-const readyWorldResponses = [
-  {
-    label: 'Mood change', title: 'The world grows darker',
-    copy: 'Each death moves the main light and fog further along the same colour gradient. The change happens gradually, so the player returns to a familiar space that now feels darker.',
-    result: 'The whole scene shows the growing death count without adding another UI element.',
-  },
-  {
-    label: 'Path change', title: 'Death opens the bridge',
-    copy: 'The bridge area records where the player died, not only how many times. Dying in that area triggers the bridge after respawn.',
-    result: 'This shows the main idea in one short sequence: a blocked route, a death, a respawn and a new path.',
-  },
-]
-
-const readyControls = ['WASD · Move', 'Shift · Run', 'Space · Jump', 'E · Dash', 'Mouse · Camera', 'Wheel · Zoom']
-
-const readyBrainstorm = [
-  {
-    number: '01', title: 'Limited steps', state: 'Kept for the prototype',
-    copy: 'The player begins with a fixed movement allowance and must plan a route before it runs out. Optional side interactions could recover steps, turning traversal into a small resource-management puzzle.',
-    retained: 'I kept the focus on planning a route, but replaced the step counter with visible changes to the level.',
-  },
-  {
-    number: '02', title: 'Use enemies against each other', state: 'Not used',
-    copy: 'In a room of visually similar NPCs, the player cannot attack directly. They identify hostile behaviour, manipulate sight lines and objects, and make one NPC eliminate another.',
-    retained: 'I kept the idea of indirect actions and clear cause and effect, but enemy AI was too large for this prototype.',
-  },
-  {
-    number: '03', title: 'Collect items while being chased', state: 'Not used',
-    copy: 'A hostile village turns item collection into a timed escape. Each return increases pressure, asking the player to search, improvise and leave before the crowd closes in.',
-    retained: 'The rising pressure led to the idea of the world becoming darker. I removed the collection and crowd systems to keep the prototype focused.',
-  },
-  {
-    number: '04', title: 'Run first, fight back later', state: 'Story idea',
-    copy: 'A repeating chase changes when the player suddenly receives a weapon. The player moves from running away to fighting back.',
-    retained: 'This change helped me treat death as a turning point instead of a normal failure screen.',
-  },
-  {
-    number: '05', title: 'Death, resets and different endings', state: 'System idea',
-    copy: 'Early notes tested revival, full resets, shifting universes and multiple endings. Sound-based identification and deliberately difficult routes were also explored as ways to make each attempt carry new information.',
-    retained: 'The final prototype keeps the clearest part: the game remembers a death and changes the level after respawn.',
   },
 ]
 
@@ -275,7 +211,7 @@ function WorkIndex() {
       <div className="section-kicker">Selected work</div>
       <div className="section-intro">
         <h2>Two projects, from early ideas to working builds.</h2>
-        <p>Last Amber focuses on real-time effects for a boss fight. Ready to Die is a Unity prototype where death changes the level.</p>
+        <p>Last Amber focuses on real-time effects for a boss fight. Ready to Die is my ongoing Unity project, combining parkour, item collection and changes to the level after death.</p>
       </div>
       <div className="project-showcase">
         <article className="featured-project">
@@ -302,7 +238,7 @@ function WorkIndex() {
           <div className="secondary-project-copy">
             <span className="card-type">Unity · Gameplay Systems</span>
             <h3>Ready to Die</h3>
-            <p>A playable tutorial-level greybox where the game remembers a death, respawns the player and opens one new route.</p>
+            <p>A third-person Unity game about parkour, puzzles and discovering new paths after death. The tutorial and main Level 1 interactions are built, with Level 2 in whitebox.</p>
             <a className="case-link" href="#/ready-to-die">View case study <span>→</span></a>
           </div>
         </article>
@@ -466,137 +402,7 @@ function LastAmber() {
 }
 
 function ReadyToDie() {
-  return (
-    <ProjectPageShell nextHref="#/last-amber" nextLabel="Last Amber">
-    <article className="project section project-detail" id="ready-to-die">
-      <ProjectHeader title="Ready to Die" discipline="Gameplay Systems · Level Prototype" />
-      <div className="project-intro">
-        <div className="intro-lead"><p>A one-level third-person platforming prototype that asks a simple question: what if failure changed the level instead of erasing progress?</p></div>
-        <dl className="facts">
-          <div><dt>Engine</dt><dd>Unity 6000.4.0f1</dd></div>
-          <div><dt>Platform</dt><dd>PC</dd></div>
-          <div><dt>State</dt><dd>Playable tutorial-level prototype</dd></div>
-          <div><dt>My role</dt><dd>Concept, systems, level blockout</dd></div>
-        </dl>
-      </div>
-      <section className="ready-thesis">
-        <span>Design question</span>
-        <div>
-          <h3>How can death become a tool for progress?</h3>
-          <p>Most platformers reset the player after death. In Ready to Die, the game remembers where the player died, sends them back to a checkpoint and changes the next attempt. The prototype tests this idea with one short playable level.</p>
-        </div>
-      </section>
-      <div className="loop" aria-label="Core gameplay loop">
-        {['Explore', 'Die', 'Respawn', 'World changes', 'New route'].map((step, index) => (
-          <div key={step}><strong>{step}</strong>{index < 4 && <b aria-hidden="true">→</b>}</div>
-        ))}
-      </div>
-      <figure className="prototype-media">
-        <img src={`${base}ready-to-die-player-view.png`} alt="Ready to Die greybox prototype viewed from behind the player character" loading="lazy" />
-        <figcaption>Player view in the current Unity greybox</figcaption>
-      </figure>
-      <div className="case-heading">
-        <span>Building the prototype</span>
-        <p>I started with two basic systems: movement that felt predictable and one death event that the rest of the level could use.</p>
-      </div>
-      <div className="ready-foundation">
-        {readyFoundation.map((item) => (
-          <section key={item.title}>
-            <header><p>{item.eyebrow}</p></header>
-            <h3>{item.title}</h3>
-            <p>{item.copy}</p>
-            <dl>
-              <div><dt>Design decision</dt><dd>{item.decision}</dd></div>
-              <div><dt>Why it matters</dt><dd>{item.outcome}</dd></div>
-            </dl>
-          </section>
-        ))}
-      </div>
-      <div className="ready-controls" aria-label="Prototype controls">
-        <span>Playable controls</span>
-        <ul>{readyControls.map((item) => <li key={item}>{item}</li>)}</ul>
-      </div>
-
-      <div className="case-heading">
-        <span>How death works</span>
-        <p>The death system has four steps. Keeping each step separate made it easier to test and change.</p>
-      </div>
-      <div className="ready-pipeline">
-        {readyDeathFlow.map((step) => (
-          <section key={step.title}>
-            <h3>{step.title}</h3><p>{step.copy}</p>
-          </section>
-        ))}
-      </div>
-
-      <div className="case-heading">
-        <span>Map preview</span>
-        <p>These Unity Scene views show the same route before and after a recorded death changes the level.</p>
-      </div>
-      <section className="ready-map-preview" aria-label="Ready to Die map state comparison">
-        <figure>
-          <img src={`${base}ready-to-die-map-before-death.png`} alt="Unity Scene view of the route before death, with a gap between platforms" loading="lazy" />
-          <figcaption><strong>Before death</strong><span>The route is broken and cannot be crossed.</span></figcaption>
-        </figure>
-        <figure>
-          <img src={`${base}ready-to-die-map-after-death.png`} alt="Unity Scene view of the route after death, with the bridge section enabled" loading="lazy" />
-          <figcaption><strong>After death</strong><span>The bridge section is enabled and opens the next route.</span></figcaption>
-        </figure>
-      </section>
-      <p className="ready-map-note">Development view: the yellow colour in the second image is Unity’s selection highlight, not the final appearance of the level.</p>
-
-      <div className="case-heading">
-        <span>Changes in the level</span>
-        <p>The same saved death can change the mood of the level or open a new path.</p>
-      </div>
-      <div className="ready-responses">
-        {readyWorldResponses.map((response) => (
-          <section key={response.title}>
-            <span>{response.label}</span>
-            <h3>{response.title}</h3>
-            <p>{response.copy}</p>
-            <div><strong>Result</strong><p>{response.result}</p></div>
-          </section>
-        ))}
-      </div>
-
-      <div className="case-heading ready-brainstorm-heading">
-        <span>Early ideas</span>
-        <p>I explored five ways that failure could change the game, then chose the one idea I could build and test clearly.</p>
-      </div>
-      <div className="ready-brainstorm">
-        {readyBrainstorm.map((idea) => (
-          <article key={idea.number}>
-            <header><strong>{idea.state}</strong></header>
-            <h3>{idea.title}</h3>
-            <p>{idea.copy}</p>
-            <div><b>What I kept</b><p>{idea.retained}</p></div>
-          </article>
-        ))}
-      </div>
-      <aside className="scope-note brainstorm-note">
-        <span>Not in the build</span>
-        <p>These boards show early ideas, not finished features. The current prototype does not include NPC combat, collectibles, advertising, multiple endings or several finished levels. It only tests the death, respawn and level-change loop shown above.</p>
-      </aside>
-
-      <section className="ready-resolution">
-        <span>Current build</span>
-        <div>
-          <h3>One tutorial level built to test the mechanic</h3>
-          <p>The current prototype connects movement, death, respawn, lighting changes and the bridge inside one short tutorial level. A scene transition exists as a technical test, but the project does not contain a finished second level.</p>
-        </div>
-        <div>
-          <h3>What I learned</h3>
-          <p>The idea became clearer when I removed extra features. Saving the place where the player died made the bridge change easy to understand, while the lighting and fog showed the same rule across the whole level.</p>
-        </div>
-      </section>
-      <aside className="scope-note">
-        <span>Next steps</span>
-        <p>Next, I would test whether players choose to die after learning the rule, make the link between each death area and its change more obvious, and add more than one useful change to the next scene.</p>
-      </aside>
-    </article>
-    </ProjectPageShell>
-  )
+  return <ProjectPageShell nextHref="#/last-amber" nextLabel="Last Amber"><ReadyToDieCase /></ProjectPageShell>
 }
 
 function About() {
@@ -606,7 +412,7 @@ function About() {
       <div className="about-grid">
         <h2>Gameplay systems, level prototypes and real-time VFX.</h2>
         <div>
-          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed blade effects, a multi-stage AOE attack and environmental fog tests in Unreal Engine. In Ready to Die, I built one tutorial-level Unity prototype around movement, death, respawn and a death-triggered bridge.</p>
+          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed blade effects, a multi-stage AOE attack and environmental fog tests in Unreal Engine. Ready to Die is my ongoing Unity game. So far, I have built the tutorial, the main Level 1 interactions and a whitebox for Level 2.</p>
           <a className="text-link" href="https://github.com/even002" target="_blank" rel="noreferrer">View GitHub <ArrowIcon /></a>
         </div>
       </div>

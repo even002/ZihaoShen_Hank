@@ -1,0 +1,71 @@
+.rtd-case { font-family: Inter, "Microsoft YaHei", "PingFang SC", sans-serif; }
+.rtd-case p { line-height: 1.95; color: var(--muted); max-width: 84ch; }
+.rtd-intro {display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:30px 0;scroll-margin-top:110px;}
+.rtd-intro h3 {font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.5;margin:0;color:var(--text);}
+.rtd-facts {display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:24px 0;border-block:1px solid var(--line);}
+.rtd-facts dt {font-size:.75rem;color:var(--muted);margin-bottom:10px;}
+.rtd-facts dd {margin:0;font-size:.9rem;}
+.rtd-index {display:flex;flex-wrap:wrap;gap:10px 24px;margin:24px 0 40px;}
+.rtd-index button {color:var(--gold);text-decoration:none;font-size:.85rem;padding:7px 0;border-bottom:1px solid var(--line);}
+.rtd-index button:hover {color:var(--text);}
+.rtd-chapter {margin-top:72px;scroll-margin-top:108px;}
+.rtd-chapter>header {display:flex;gap:20px;align-items:baseline;border-top:1px solid var(--line-strong);padding-top:24px;margin-bottom:24px;}
+.rtd-chapter>header>span {color:var(--gold);font-size:.85rem;}
+.rtd-chapter h3 {font-size:clamp(1.3rem,2.5vw,1.9rem);line-height:1.5;margin:0;}
+.rtd-chapter h4 {font-size:1.1rem;line-height:1.7;margin:22px 0 10px;}
+.rtd-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:28px 0;}
+.rtd-shot {margin:28px 0;min-width:0;border:1px solid var(--line);background:var(--surface);}
+.rtd-grid .rtd-shot {margin:0;}
+.rtd-shot img {width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:var(--bg-deep);}
+.rtd-shot figcaption {padding:16px 20px;font-size:.8rem;line-height:1.7;}
+.rtd-shot figcaption strong,.rtd-shot figcaption span {display:block;}
+.rtd-shot figcaption span {color:var(--muted);margin-top:5px;}
+.rtd-placeholder {min-height:240px;aspect-ratio:16/9;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:32px;background:linear-gradient(135deg,rgba(201,168,76,.055),transparent);border-bottom:1px dashed var(--line-strong);}
+.rtd-placeholder>span {font-size:.72rem;color:var(--gold);letter-spacing:.05em;margin-bottom:20px;}
+.rtd-placeholder strong {font-size:1.05rem;line-height:1.7;}
+.rtd-placeholder p {font-size:.8rem;margin:12px 0;}
+.rtd-placeholder small {font-size:.7rem;color:var(--muted);}
+.rtd-flow {list-style:none;display:flex;flex-wrap:wrap;padding:0;gap:8px;margin:28px 0;}
+.rtd-flow li {flex:1 1 120px;padding:16px;background:var(--surface);border:1px solid var(--line);font-size:.85rem;line-height:1.7;}
+.rtd-flow li>span {display:block;color:var(--gold);font-size:.7rem;margin-bottom:8px;}
+.rtd-cards>section {padding:26px;background:var(--surface);border-top:2px solid var(--line-strong);min-width:0;}
+.rtd-cards small {color:var(--muted);line-height:1.8;display:block;}
+.rtd-tag {color:var(--gold);font-size:.75rem;}
+.rtd-note {padding:22px 26px;border-left:2px solid var(--gold);background:var(--gold-dim);font-size:.85rem;line-height:1.9;color:var(--muted);margin:26px 0;}
+.rtd-timeline {list-style:none;padding:0;margin:32px 0;}
+.rtd-timeline li {display:grid;grid-template-columns:100px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);}
+.rtd-timeline time {color:var(--gold);font-size:.85rem;padding-top:5px;}
+.rtd-timeline h4,.rtd-timeline p {margin:0 0 8px;}
+.rtd-early {border:1px solid var(--line);padding:22px;}
+.rtd-early summary {cursor:pointer;color:var(--gold);line-height:1.8;}
+.rtd-status-table {overflow-x:auto;}
+.rtd-status-table table {width:100%;border-collapse:collapse;font-size:.85rem;line-height:1.8;min-width:560px;}
+.rtd-status-table th,.rtd-status-table td {text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:16px;}
+.rtd-status-table thead {color:var(--gold);background:var(--surface);}
+.rtd-status-table tbody th {width:23%;font-weight:500;}
+.rtd-status-table td:nth-child(2) {width:23%;color:var(--gold);}
+.rtd-status-table td:last-child {color:var(--muted);}
+.rtd-case a:focus-visible,.rtd-case summary:focus-visible,.rtd-status-table:focus-visible {outline:2px solid var(--gold);outline-offset:5px;}
+@media(max-width:700px){.rtd-intro,.rtd-grid {grid-template-columns:1fr;gap:20px;}.rtd-facts{grid-template-columns:1fr 1fr;}.rtd-chapter{margin-top:48px;}.rtd-placeholder{padding:24px;aspect-ratio:auto;min-height:220px;}.rtd-timeline li{grid-template-columns:76px 1fr;gap:12px;}.rtd-cards>section{padding:22px;}}
+
+.rtd-index button {background:none;border:0;border-bottom:1px solid var(--line);font:inherit;font-size:.85rem;cursor:pointer;}
+.rtd-index button:focus-visible {outline:2px solid var(--gold);outline-offset:4px;}
+
+/* 实机截图按操作顺序排列，点击可以查看完整原图。 */
+.rtd-gallery {margin:42px 0;}
+.rtd-gallery>h4 {margin-bottom:16px;}
+.rtd-gallery-images {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+.rtd-gallery-3 {grid-template-columns:repeat(3,minmax(0,1fr));}
+.rtd-gallery .rtd-shot {margin:0;background:none;border:0;}
+.rtd-gallery .rtd-shot figcaption {padding:12px 0;}
+.rtd-gallery .rtd-shot figcaption strong {font-weight:400;}
+.rtd-image-link {display:block;cursor:zoom-in;}
+.rtd-image-link img {display:block;}
+.rtd-wall-story {margin:36px 0;}
+.rtd-wall-story .rtd-shot {margin:0;background:none;border:0;}
+.rtd-wall-story .rtd-shot figcaption {padding:16px 0;}
+.rtd-wall-transition {display:flex;gap:24px;align-items:center;margin:8px 0 28px;padding:12px 0;border-block:1px solid var(--line);}
+.rtd-wall-transition>span {font-size:2rem;color:var(--gold);}
+.rtd-wall-transition h4 {margin:0;}
+.rtd-wall-transition p {margin:4px 0;font-size:.9rem;}
+@media(max-width:700px){.rtd-gallery-images {grid-template-columns:1fr;gap:22px;}}
