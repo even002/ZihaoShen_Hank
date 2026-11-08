@@ -68,3 +68,39 @@
 .rtd-wall-transition h4 {margin:0;}
 .rtd-wall-transition p {margin:4px 0;font-size:.9rem;}
 @media(max-width:700px){.rtd-gallery-images {grid-template-columns:1fr;gap:22px;}}
+
+/* Short sequences read as steps rather than a row of feature cards. */
+.rtd-case .project-heading .rtd-subtitle { margin: 20px 0 0; font-size: 1rem; color: var(--muted); }
+.rtd-overview { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; margin: 24px 0 32px; }
+.rtd-overview p:first-child { margin-top: 0; }
+.rtd-project-info { margin: 0; font-size: .9rem; }
+.rtd-project-info > div { display: grid; grid-template-columns: 80px 1fr; gap: 16px; padding: 8px 0; }
+.rtd-project-info dt { color: var(--muted); }
+.rtd-project-info dd { margin: 0; }
+.rtd-revisions { max-width: 78ch; padding-left: 20px; color: var(--muted); line-height: 1.8; }
+.rtd-revisions li { padding-left: 8px; margin-bottom: 20px; }
+.rtd-revisions strong { font-weight: 500; color: var(--text); }
+.rtd-authorship { max-width: 84ch; margin: 24px 0 32px; padding: 20px 24px; border-left: 2px solid var(--gold); background: var(--surface); }
+.rtd-authorship > strong { font-weight: 500; }
+.rtd-authorship p { margin: 12px 0 0; font-size: .95rem; }
+.rtd-chapter h4[id] { scroll-margin-top: 110px; }
+@media(max-width:700px) { .rtd-overview { grid-template-columns: 1fr; gap: 16px; } }
+.rtd-intro { gap: 40px; margin: 24px 0; }
+.rtd-intro h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 500; line-height: 1.3; }
+.rtd-case p { line-height: 1.8; }
+.rtd-facts { padding: 20px 0; }
+.rtd-index { gap: 8px 24px; margin: 16px 0 24px; }
+.rtd-index button { min-height: 44px; padding: 8px 0; }
+.rtd-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; row-gap: 0; }
+.rtd-flow li { display: flex; gap: 16px; padding: 12px 0; border: 0; border-bottom: 1px solid var(--line); background: none; }
+.rtd-flow li > span { margin: 0; min-width: 20px; line-height: inherit; font-size: .85rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+.rtd-cards > section { padding: 0; border: 0; background: none; }
+.rtd-cards h4 { margin-top: 0; font-weight: 500; }
+.rtd-early { padding: 16px 0; border: 0; border-block: 1px solid var(--line); }
+.rtd-early summary { color: var(--muted); }
+.rtd-early summary:hover { color: var(--text); }
+.rtd-case > .rtd-chapter:last-child .text-link { display: inline-block; margin-top: 12px; }
+@media(max-width:700px) {
+  .rtd-intro { gap: 16px; }
+  .rtd-flow { grid-template-columns: 1fr; }
+}

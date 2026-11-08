@@ -1,0 +1,563 @@
+{
+  "soundEffects": {
+    "sources": [
+      {
+        "id": "S1",
+        "title": "9mm pistol shot",
+        "author": "michorvath",
+        "use": "开枪",
+        "url": "https://freesound.org/people/michorvath/sounds/427592/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/427/427592_3094998-hq.mp3"
+      },
+      {
+        "id": "S2",
+        "title": "Reload Pistol.mp3",
+        "author": "baconandbeans",
+        "use": "换弹",
+        "url": "https://freesound.org/people/baconandbeans/sounds/609667/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/609/609667_11140127-hq.mp3"
+      },
+      {
+        "id": "S3",
+        "title": "footsteps on surfaced road in boots",
+        "author": "Frigus_XIII",
+        "use": "脚步",
+        "url": "https://freesound.org/people/Frigus_XIII/sounds/456428/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/456/456428_1505134-hq.mp3"
+      },
+      {
+        "id": "S5",
+        "title": "Small_Flashlight_Click_on_01.wav",
+        "author": "Rudmer_Rotteveel",
+        "use": "开关",
+        "url": "https://freesound.org/people/Rudmer_Rotteveel/sounds/457458/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/457/457458_4921277-hq.mp3"
+      },
+      {
+        "id": "S6",
+        "title": "ItemPickup.wav",
+        "author": "nicholasdaryl",
+        "use": "拾取",
+        "url": "https://freesound.org/people/nicholasdaryl/sounds/563465/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/563/563465_10415593-hq.mp3"
+      },
+      {
+        "id": "S7",
+        "title": "Explosion_01.wav",
+        "author": "tommccann",
+        "use": "爆炸",
+        "url": "https://freesound.org/people/tommccann/sounds/235968/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/235/235968_4265427-hq.mp3"
+      },
+      {
+        "id": "S8",
+        "title": "Dog Growl - Beast / Creature",
+        "author": "coldvet",
+        "use": "狗低吼",
+        "url": "https://freesound.org/people/coldvet/sounds/404920/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/404/404920_5965692-hq.mp3"
+      },
+      {
+        "id": "D1",
+        "title": "door - open 01.wav",
+        "author": "Anthousai",
+        "url": "https://freesound.org/people/Anthousai/sounds/398750/",
+        "license": "CC0",
+        "decision": "approved",
+        "previewUrl": "https://cdn.freesound.org/previews/398/398750_5923045-hq.mp3"
+      },
+      {
+        "id": "H1",
+        "author": "unfa",
+        "url": "https://freesound.org/people/unfa/sounds/610991/",
+        "license": "CC0",
+        "previewUrl": "https://cdn.freesound.org/previews/610/610991_1038806-hq.mp3"
+      }
+    ],
+    "provenance": "Public Freesound HQ MP3 previews decoded to mono PCM16 WAV 48000Hz; not original lossless downloads.",
+    "edits": [
+      {
+        "file": "Pistol_Shot.wav",
+        "source": "S1",
+        "segments": [
+          [
+            0.11033333333333334,
+            1.5001875
+          ]
+        ],
+        "duration": 1.3898541666666666,
+        "peakDb": -3
+      },
+      {
+        "file": "Switch_Click.wav",
+        "source": "S5",
+        "segments": [
+          [
+            0.0,
+            0.2209375
+          ]
+        ],
+        "duration": 0.2209375,
+        "peakDb": -3
+      },
+      {
+        "file": "Item_Pickup.wav",
+        "source": "S6",
+        "segments": [
+          [
+            0.019020833333333334,
+            0.36570833333333336
+          ]
+        ],
+        "duration": 0.3466875,
+        "peakDb": -3
+      },
+      {
+        "file": "Explosion.wav",
+        "source": "S7",
+        "segments": [
+          [
+            0.0,
+            7.29875
+          ]
+        ],
+        "duration": 7.29875,
+        "peakDb": -3
+      },
+      {
+        "file": "Door_Open.wav",
+        "source": "D1",
+        "segments": [
+          [
+            0.005729166666666666,
+            1.243
+          ]
+        ],
+        "duration": 1.2372708333333333,
+        "peakDb": -3
+      },
+      {
+        "file": "Pistol_Reload.wav",
+        "source": "S2",
+        "segments": [
+          [
+            0.055,
+            0.24
+          ],
+          [
+            0.49,
+            0.72
+          ],
+          [
+            2.84,
+            3.02
+          ],
+          [
+            3.55,
+            3.89
+          ]
+        ],
+        "duration": 1.1,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_01.wav",
+        "source": "S3",
+        "segments": [
+          [
+            3.485,
+            3.79
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_02.wav",
+        "source": "S3",
+        "segments": [
+          [
+            4.015000000000001,
+            4.32
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_03.wav",
+        "source": "S3",
+        "segments": [
+          [
+            4.585,
+            4.89
+          ]
+        ],
+        "duration": 0.3049791666666667,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_04.wav",
+        "source": "S3",
+        "segments": [
+          [
+            5.075,
+            5.38
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_05.wav",
+        "source": "S3",
+        "segments": [
+          [
+            5.655,
+            5.96
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_06.wav",
+        "source": "S3",
+        "segments": [
+          [
+            6.175000000000001,
+            6.48
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_07.wav",
+        "source": "S3",
+        "segments": [
+          [
+            6.775,
+            7.08
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_08.wav",
+        "source": "S3",
+        "segments": [
+          [
+            7.925000000000001,
+            8.23
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_09.wav",
+        "source": "S3",
+        "segments": [
+          [
+            8.455,
+            8.76
+          ]
+        ],
+        "duration": 0.305,
+        "peakDb": -3
+      },
+      {
+        "file": "Footstep_10.wav",
+        "source": "S3",
+        "segments": [
+          [
+            9.565,
+            9.87
+          ]
+        ],
+        "duration": 0.3049791666666667,
+        "peakDb": -3
+      },
+      {
+        "file": "Dog_Growl_01.wav",
+        "source": "S8",
+        "segments": [
+          [
+            0.64,
+            2.5
+          ]
+        ],
+        "duration": 1.86,
+        "peakDb": -3
+      },
+      {
+        "file": "Dog_Growl_02.wav",
+        "source": "S8",
+        "segments": [
+          [
+            4.95,
+            8.3
+          ]
+        ],
+        "duration": 3.35,
+        "peakDb": -3
+      },
+      {
+        "file": "Dog_Growl_03.wav",
+        "source": "S8",
+        "segments": [
+          [
+            10.0,
+            12.3
+          ]
+        ],
+        "duration": 2.3,
+        "peakDb": -3
+      },
+      {
+        "file": "Dog_Growl_04.wav",
+        "source": "S8",
+        "segments": [
+          [
+            31.65,
+            32.88
+          ]
+        ],
+        "duration": 1.23,
+        "peakDb": -3
+      }
+    ],
+    "hurtEdits": {
+      "source": "https://freesound.org/people/unfa/sounds/610991/",
+      "title": "Short Male Pain Grunts",
+      "author": "unfa",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "input": "Public HQ MP3 preview, NOT original FLAC; WAV export does not restore lossless quality",
+      "previewUrl": "https://cdn.freesound.org/previews/610/610991_1038806-hq.mp3",
+      "sourceSha256": "fc63160db51a6812e80b54be1b517f5f4b944fc59acac5b626fed54f8eeb395f",
+      "processing": "RMS segmentation with 80ms lead and 140ms tail; 5ms fade-in and 25ms fade-out; shared gain; 48kHz mono PCM16. No pitch change, voice synthesis or model training.",
+      "sharedGain": 1.0312970419768792,
+      "status": "User approved source. Cuts await listening review, not imported into Unity.",
+      "multiDemo": "First three separate takes with 120ms extra gaps. Demo only; game hits should trigger individual takes per damage event, not loop the composite.",
+      "clips": [
+        {
+          "file": "H1_Hurt_01.wav",
+          "sourceStartSeconds": 1.04,
+          "sourceEndSeconds": 1.49,
+          "durationSeconds": 0.45,
+          "peakDbFS": -8.397947311401367
+        },
+        {
+          "file": "H1_Hurt_02.wav",
+          "sourceStartSeconds": 2.18,
+          "sourceEndSeconds": 2.58,
+          "durationSeconds": 0.4,
+          "peakDbFS": -6.017593860626221
+        },
+        {
+          "file": "H1_Hurt_03.wav",
+          "sourceStartSeconds": 3.58,
+          "sourceEndSeconds": 4.08,
+          "durationSeconds": 0.5,
+          "peakDbFS": -2.999999523162842
+        },
+        {
+          "file": "H1_Hurt_04.wav",
+          "sourceStartSeconds": 4.92,
+          "sourceEndSeconds": 5.3499791666666665,
+          "durationSeconds": 0.4299791666666667,
+          "peakDbFS": -9.796205520629883
+        },
+        {
+          "file": "H1_Hurt_05.wav",
+          "sourceStartSeconds": 6.13,
+          "sourceEndSeconds": 6.62,
+          "durationSeconds": 0.49,
+          "peakDbFS": -15.826521873474121
+        },
+        {
+          "file": "H1_Hurt_06.wav",
+          "sourceStartSeconds": 7.24,
+          "sourceEndSeconds": 7.74,
+          "durationSeconds": 0.5,
+          "peakDbFS": -14.258045196533203
+        },
+        {
+          "file": "H1_Hurt_07.wav",
+          "sourceStartSeconds": 8.42,
+          "sourceEndSeconds": 8.88,
+          "durationSeconds": 0.46,
+          "peakDbFS": -17.2906436920166
+        },
+        {
+          "file": "H1_Hurt_08.wav",
+          "sourceStartSeconds": 9.61,
+          "sourceEndSeconds": 10.12,
+          "durationSeconds": 0.51,
+          "peakDbFS": -7.986274719238281
+        },
+        {
+          "file": "H1_Hurt_09.wav",
+          "sourceStartSeconds": 10.74,
+          "sourceEndSeconds": 11.16,
+          "durationSeconds": 0.42,
+          "peakDbFS": -12.456740379333496
+        },
+        {
+          "file": "H1_Hurt_10.wav",
+          "sourceStartSeconds": 12.0,
+          "sourceEndSeconds": 12.44,
+          "durationSeconds": 0.44,
+          "peakDbFS": -10.524910926818848
+        },
+        {
+          "file": "H1_Hurt_11.wav",
+          "sourceStartSeconds": 13.32,
+          "sourceEndSeconds": 13.88,
+          "durationSeconds": 0.56,
+          "peakDbFS": -7.168931484222412
+        },
+        {
+          "file": "H1_Hurt_12.wav",
+          "sourceStartSeconds": 14.66,
+          "sourceEndSeconds": 15.09,
+          "durationSeconds": 0.43,
+          "peakDbFS": -9.806524276733398
+        },
+        {
+          "file": "H1_Hurt_13.wav",
+          "sourceStartSeconds": 15.72,
+          "sourceEndSeconds": 16.18,
+          "durationSeconds": 0.46,
+          "peakDbFS": -9.534908294677734
+        },
+        {
+          "file": "H1_Hurt_14.wav",
+          "sourceStartSeconds": 17.07,
+          "sourceEndSeconds": 17.52,
+          "durationSeconds": 0.45,
+          "peakDbFS": -11.636725425720215
+        },
+        {
+          "file": "H1_Hurt_15.wav",
+          "sourceStartSeconds": 18.23,
+          "sourceEndSeconds": 18.71,
+          "durationSeconds": 0.48,
+          "peakDbFS": -16.667028427124023
+        },
+        {
+          "file": "H1_Hurt_16.wav",
+          "sourceStartSeconds": 19.41,
+          "sourceEndSeconds": 19.91,
+          "durationSeconds": 0.5,
+          "peakDbFS": -11.794886589050293
+        },
+        {
+          "file": "H1_Hurt_17.wav",
+          "sourceStartSeconds": 20.64,
+          "sourceEndSeconds": 21.05,
+          "durationSeconds": 0.41,
+          "peakDbFS": -10.288067817687988
+        },
+        {
+          "file": "H1_Hurt_18.wav",
+          "sourceStartSeconds": 21.78,
+          "sourceEndSeconds": 22.33,
+          "durationSeconds": 0.55,
+          "peakDbFS": -4.095165729522705
+        },
+        {
+          "file": "H1_Hurt_19.wav",
+          "sourceStartSeconds": 23.11,
+          "sourceEndSeconds": 23.5,
+          "durationSeconds": 0.39,
+          "peakDbFS": -7.133429050445557
+        },
+        {
+          "file": "H1_Hurt_20.wav",
+          "sourceStartSeconds": 24.24,
+          "sourceEndSeconds": 24.79,
+          "durationSeconds": 0.55,
+          "peakDbFS": -14.694256782531738
+        }
+      ]
+    },
+    "timingRevision20261107": {
+      "explosionTrimSeconds": 0.38,
+      "footstepTrimSeconds": [
+        0.055,
+        0.055,
+        0.05,
+        0.05,
+        0.05,
+        0.055,
+        0.05,
+        0.055,
+        0.055,
+        0.055
+      ],
+      "reason": "Remove onset delay; explosion stops at owner respawn; footsteps follow locomotion contact phases."
+    }
+  },
+  "ambience": {
+    "sources": [
+      {
+        "preview": "https://cdn.freesound.org/previews/852/852826_17997500-hq.mp3",
+        "url": "https://freesound.org/people/kkenny101/sounds/852826/",
+        "license": "CC0",
+        "id": "Sea"
+      },
+      {
+        "preview": "https://cdn.freesound.org/previews/528/528944_3302313-hq.mp3",
+        "url": "https://freesound.org/people/fthgurdy/sounds/528944/",
+        "license": "CC0",
+        "id": "Wind"
+      }
+    ],
+    "processing": [
+      {
+        "name": "Sea",
+        "length": 20.769916666666667,
+        "rms": 0.030619477889181314,
+        "peak": 0.7,
+        "seamJump": 0.010544202153824359,
+        "crossfadeSeconds": 1.0
+      },
+      {
+        "name": "Wind",
+        "length": 8.7819375,
+        "rms": 0.07579571909538388,
+        "peak": 0.7,
+        "seamJump": 0.024904975472722666,
+        "crossfadeSeconds": 0.75
+      }
+    ],
+    "provenance": "Freesound public HQ MP3 previews decoded to PCM16 mono 48kHz; not original lossless downloads; linear end-to-start crossfade and RMS/peak gain."
+  },
+  "ending": {
+    "use": "Final corridor music",
+    "provenance": "Public HQ MP3 preview, not original lossless WAV",
+    "url": "https://freesound.org/people/jjwoosh/sounds/743772/",
+    "title": "peaceful ambient pad",
+    "license": "CC0 1.0",
+    "preview": "https://cdn.freesound.org/previews/743/743772_15741152-hq.mp3",
+    "author": "jjwoosh"
+  }
+}

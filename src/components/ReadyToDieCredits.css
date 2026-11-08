@@ -1,0 +1,15 @@
+.rtd-credits { max-width: 900px; margin: 0 auto; padding-top: 120px; }
+.rtd-credits-heading { margin: 48px 0; }
+.rtd-credits-heading h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.1; margin: 12px 0 24px; letter-spacing: -.035em; }
+.rtd-credits p { max-width: 76ch; line-height: 1.8; color: var(--muted); }
+.rtd-credits section { padding: 32px 0; border-top: 1px solid rgba(236, 235, 230, .12); }
+.rtd-credits h2 { font-size: 1.5rem; margin: 0 0 20px; }
+.rtd-credit-list { list-style: none; padding: 0; margin: 28px 0; }
+.rtd-credit-list li { padding: 22px 0; border-bottom: 1px solid rgba(236, 235, 230, .12); }
+.rtd-credit-list h3 { font-size: 1.05rem; line-height: 1.6; margin: 0 0 4px; overflow-wrap: anywhere; }
+.rtd-credit-list a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.rtd-credit-list p { margin: 6px 0 0; }
+.rtd-credit-list .rtd-credit-byline { font-size: .9rem; color: var(--gold); }
+.rtd-audio-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 36px; }
+.credits-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 640px) { .rtd-audio-list { grid-template-columns: 1fr; } .rtd-credits-heading { margin: 36px 0; } }

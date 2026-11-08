@@ -1,0 +1,34 @@
+.portfolio-home { --home-secondary: #b0afb9; }
+.home-introduction { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; padding: 152px 0 64px; scroll-margin-top: 100px; }
+.home-introduction h1 { margin: 0; font-size: clamp(2.8rem, 5.2vw, 4.75rem); line-height: 1.05; font-weight: 600; letter-spacing: -.045em; }
+.home-role { margin: 16px 0 0; font-size: 1.3rem; color: var(--text); }
+.home-bio { max-width: 52ch; margin: 0; color: var(--home-secondary); font-size: 1.05rem; line-height: 1.8; }
+.home-work { scroll-margin-top: 104px; }
+.home-work > h2 { font-size: 1rem; font-weight: 500; margin: 0 0 24px; color: var(--home-secondary); }
+.home-project { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; gap: 48px; padding-bottom: 72px; }
+.home-project + .home-project { padding-top: 48px; border-top: 1px solid var(--line); }
+.home-project-image { display: block; background: var(--bg-deep); }
+.home-project-image img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; }
+.home-project-body > p { color: var(--home-secondary); line-height: 1.75; margin: 0 0 16px; max-width: 58ch; }
+.home-project-body .home-project-context { font-size: .85rem; margin-bottom: 12px; }
+.home-project h3 { font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 500; letter-spacing: -.035em; line-height: 1.1; margin: 0 0 12px; }
+.home-project h3 a { text-decoration: none; }
+.home-project h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.home-project-body .home-project-role { color: var(--text); margin-bottom: 24px; font-size: .95rem; }
+.home-project-topics { margin: 24px 0; padding-left: 20px; font-size: .9rem; color: var(--home-secondary); line-height: 1.9; }
+.home-project-link, .home-profile-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--gold-light); text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.home-project-link:hover, .home-profile-link:hover { color: var(--text); }
+.home-about { display: grid; grid-template-columns: .7fr 1.3fr; gap: 64px; padding: 48px 0 80px; border-top: 1px solid var(--line); scroll-margin-top: 104px; }
+.home-about h2 { font-size: 1.8rem; font-weight: 500; margin: 0; }
+.home-about p { color: var(--home-secondary); max-width: 66ch; line-height: 1.8; margin: 0 0 20px; }
+@media (max-width: 900px) {
+  .home-introduction { gap: 32px; }
+  .home-project { grid-template-columns: 1.15fr 1fr; gap: 32px; }
+}
+@media (max-width: 700px) {
+  .home-introduction { grid-template-columns: 1fr; gap: 24px; padding: 120px 0 48px; }
+  .home-project { grid-template-columns: 1fr; gap: 24px; padding-bottom: 48px; }
+  .home-project + .home-project { padding-top: 32px; }
+  .home-project-image img { aspect-ratio: 16 / 10; }
+  .home-about { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 56px; }
+}

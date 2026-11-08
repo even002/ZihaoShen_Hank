@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import ReadyToDieCase from './components/ReadyToDieCase'
+import ReadyToDieCredits from './components/ReadyToDieCredits'
+import HomePortfolio from './components/HomePortfolio'
 
 const base = '/ZihaoShen_Hank/assets/portfolio/'
 
@@ -9,42 +11,30 @@ const amberStudies = [
     number: '01',
     title: 'Fog',
     date: '29 Jul–02 Aug 2026',
-    status: 'Completed',
+    paragraphs: ["I built the fog in Niagara using an Unreal Engine texture and a material I made in the Material Editor. I wanted to darken the arena without hiding the routes or attacks.", "The first version did not fit the scene lighting. I changed it to dark red and added a small amount of emissive colour so it stayed visible in the darker parts of the room."],
     tools: 'Unreal Engine · Niagara',
     images: [
       { src: `${base}last-amber-fog-final.png`, label: 'Final version · dark-red volumetric fog' },
     ],
-    goal: 'Make the scene feel darker with fog without hiding routes, enemies or attacks.',
-    work: 'I built the smoke effect in Niagara and tested it in the boss arena.',
-    process: 'I started with an Unreal Engine texture, built the material in the Material Editor and used Niagara to spread the smoke particles through the scene.',
-    problem: 'The first version clashed with the scene lighting and did not feel dark enough.',
-    changes: 'I changed the fog to dark red so it matched the lighting already used in the arena.',
-    result: 'The dark-red version fits the scene better. A small amount of emissive colour keeps the fog visible in dark areas.',
   },
   {
     number: '02',
     title: 'Blade Light',
     date: '03–10 Aug 2026',
-    status: 'Completed',
+    paragraphs: ["I made the blade mask, material, mesh and Niagara trail, then adjusted them to the attack animation. A bright centre and dark-red edge helped the trail show the direction of the swing.", "The first version had broken pieces at the tail, visible stripes and a grey ghost image. I rebuilt the texture and changed the palette to red and black. The images show that change from the white-core test to the final version."],
     tools: 'Unreal Engine · Niagara · Materials',
     images: [
       { src: `${base}last-amber-blade-light-v1.png`, label: 'First version · white-core silhouette test' },
       { src: `${base}last-amber-blade-light-v2.png`, label: 'Second version · fire and edge treatment' },
       { src: `${base}last-amber-blade-light-final.png`, label: 'Final version · red-black palette' },
     ],
-    goal: 'Make a flame-like blade trail for both the player and the boss. It needed to show the direction, speed and weight of each attack while matching the scene’s dark-red colour palette.',
-    work: 'I made the material, mask texture, mesh and Niagara trail, then adjusted the colour, width, lifetime and movement to fit the attack animation.',
-    process: 'I studied reference effects, drew the blade mask, made an emissive material with a bright core and dark-red edge, placed it on a rectangular mesh and used a Niagara Ribbon for the curved trail.',
-    problem: 'The first version had broken pieces at the tail, stripes on the right and a grey ghost image. The colour also did not match the scene.',
-    changes: 'I rebuilt the texture to remove the stripes and ghost image, then changed the colours to match the final scene.',
-    result: 'The final red-and-black version looks more like a corrupted, blood-like blade and is much clearer than the first test.',
     note: 'Player variant: I used the boss effect as a starting point, then reduced its size, brightness, lifetime and curve. The smaller version shows the player’s attack direction without competing with the boss effects.',
   },
   {
     number: '03',
     title: 'Blade Slash',
     date: '11–31 Aug 2026',
-    status: 'Completed',
+    paragraphs: ["For the boss’s wide slash, I combined the blade, fire and black outer flame in one Niagara system. The effect needed to warn the player and follow the attack animation.", "Early tests sometimes repeated or showed no particles. I removed a duplicate actor and kept one Spawn Burst instead of using both Burst and Spawn Rate. I also gave the black flame its own translucent material because it disappeared beside the bright centre.", "Making the effect double-sided and adjusting its scale helped it read from different angles. The final slash plays once with the animation."],
     tools: 'Unreal Engine · Niagara · Materials',
     images: [
       { src: `${base}last-amber-blade-slash-setup.png`, label: 'Attack setup' },
@@ -52,18 +42,12 @@ const amberStudies = [
       { src: `${base}last-amber-blade-slash-impact.png`, label: 'Impact frame' },
       { src: `${base}last-amber-blade-slash-final.png`, label: 'Final slash integration' },
     ],
-    goal: 'Build the boss’s main wide slash. The player needed to see its direction, range and warning before it hit.',
-    work: 'I made the Niagara system, materials, textures and blade mesh, then joined the slash, fire and black outer flame into one attack that follows the boss animation.',
-    process: 'I made an RGBA mask and an emissive red-and-black material, combined several Niagara emitters and adjusted the spawn settings, mesh size, lifetime and timing.',
-    problem: 'Some early tests showed no particles, while others kept repeating. There was also a duplicate Niagara actor, and both Spawn Rate and Spawn Burst were active. The black flame disappeared beside the bright centre, and the effect only looked clear from one camera angle.',
-    changes: 'I kept one Spawn Burst, turned off Spawn Rate, removed the duplicate actor and gave the black flame its own translucent material. I also changed the colour, opacity and mesh scale, and made the effect double-sided.',
-    result: 'The attack now plays once with the animation. The red blade, fire and black outer flame clearly show the direction, range and power of the attack from different angles.',
   },
   {
     number: '04',
     title: 'AOE Falling Attack',
     date: '10–29 Sep 2026',
-    status: 'Current build',
+    paragraphs: ["I built this attack in stages: targeting columns gather at the centre, a ring marks the area, the main column falls, then energy spreads across the ground and releases volumetric fog. Separate emitters let me adjust the warning, impact and fade independently.", "The ground impact was the hardest part. A stock cone repeated the texture on each face, while sprites and crossed planes looked flat from the side. I replaced them with a cylindrical mesh and used World Position Offset to push its lower vertices outward. Noise breaks up the surface into red strands and black gaps.", "I also replaced a custom HLSL approach for the targeting columns with Niagara curve and position modules. The columns converge before the strike, and the column joins the ground spread instead of ending above a separate burst. I worked with the team on the later integration and testing."],
     tools: 'Unreal Engine 5.6 · Niagara · Niagara Fluids · Materials',
     images: [
       { src: `${base}aoe-sequence-01-targeting-columns.png`, label: '01 · Thin targeting columns gather at the centre' },
@@ -71,20 +55,14 @@ const amberStudies = [
       { src: `${base}aoe-sequence-03-falling-column.png`, label: '03 · Falling column reaches the marked area' },
       { src: `${base}aoe-sequence-04-ground-impact.png`, label: '04 · Red-and-black energy spreads across the ground' },
     ],
-    goal: 'Make a large falling attack that warns the player before impact, then carries the red-and-black energy from the vertical column into a fast ground-level spread.',
-    work: 'I built the warning rings, falling column, impact flash, a three-dimensional ground-flare mesh, post-impact volumetric fog and a group of thin targeting columns that spiral into the centre.',
-    process: 'The effect starts with the ground warning and thin vertical columns. The columns rotate and move into the centre before the main strike, then the falling column opens into radial ground energy and releases Grid3D Gas fog after impact. Each stage stays in a separate Niagara emitter so I can tune the warning, hit and fade independently.',
-    problem: 'A stock cone repeated the texture on every face, while camera-facing sprites and crossed planes looked flat from side angles. The column also needed to bend continuously into the ground spread rather than ending above a separate smoke burst.',
-    changes: 'I replaced the cone with a custom cylindrical mesh and used World Position Offset to push its lower vertices outward in 360 degrees. Animated noise breaks the surface into irregular red strands with black gaps. For the targeting stage, I replaced custom HLSL with Niagara curve, lerp and position modules so the columns converge cleanly without a handwritten expression.',
-    result: 'The current system compiles and plays as one centred impact. The thin columns meet at the centre at about 0.83–0.90 seconds and disappear at about 1.08–1.12 seconds before the main hit. The system has been saved and migrated with its Niagara Fluids dependency restored. A final boss-arena readability pass and a test away from the world origin are still needed.',
     noteLabel: 'Migration note',
     note: 'The target project must enable Niagara Fluids before migration. Without it, the Grid3D emitters lose their plugin scripts and report unknown-function errors even though the migrated Niagara asset itself is present.',
   },
   {
     number: '05',
     title: 'Better Fog System',
-    date: '02–04 Oct 2026',
-    status: 'In testing',
+    date: 'October 2026',
+    paragraphs: ["My final work on Better Fog focused on the scene’s colour, density and visibility. I compared warm-grey and dark-red versions while checking whether the player, nearby fire and distant attacks remained readable.", "Earlier texture tests looked too much like rolling smoke. I tried softer veils and ground wisps, then adjusted the scene fog around the existing lighting. The images here show those development comparisons."],
     tools: 'Unreal Engine 5.6 · Niagara · Blueprint · Volumetric Fog',
     images: [
       { src: `${base}better-fog-veil.png`, label: 'Main veil texture · broad, low-contrast fog layer' },
@@ -92,14 +70,18 @@ const amberStudies = [
       { src: `${base}better-fog-scene-warm-grey.png`, label: 'Warm-grey test · distant red effects remain visible' },
       { src: `${base}better-fog-scene-dark-red.png`, label: 'Dark-red test · fog changes the scene mood and depth' },
     ],
-    goal: 'Build dense environmental fog that feels fine and natural rather than like a group of smoke clouds, while keeping the player and nearby fire readable.',
-    work: 'I made the texture set, material instances and a two-emitter Niagara system, then combined it with Exponential Height Fog and Volumetric Fog in a separate test map.',
-    process: 'The main atmosphere comes from the engine fog, while Niagara adds a small amount of movement. Fog_MainBody uses large, soft cards. Fog_GroundWisps uses thinner cards close to the ground with slow velocity, drag and a fade at both ends of the particle lifetime.',
-    problem: 'The first texture direction looked too much like rolling smoke. A Niagara-only solution also could not create the same depth across the whole level.',
-    changes: 'I changed the texture set to a softer veil, narrow ground wisps and low-frequency noise. The test map uses warm grey global fog with low-alpha Niagara layers, so the distant scene fades while nearby torches remain visible.',
-    result: 'The two Niagara layers compile and the combined fog is visible in the test map. The reusable Blueprint fade controller has been connected for density and emissive, but its final runtime test, Niagara fade sync and boss-arena tuning are still in progress.',
-    noteLabel: 'Current boundary',
-    note: 'This is a working environment test, not the final Last Amber arena pass. The current controller starts on BeginPlay; player-entry triggering and cross-project migration still need to be tested.',
+    noteLabel: 'Development images',
+    note: 'These images preserve earlier texture and scene comparisons, rather than final-build captures. My final contribution focused on adjusting the scene fog.',
+  },
+  {
+    number: '06', title: 'Player Ultimate', date: 'October 2026',
+    paragraphs: ["The ultimate began as an overhead energy beam, but I changed it to an enlarged sword so the attack stayed connected to the player’s weapon. I developed the sword energy, gathering particles, burst and trail as separate stages.", "An early burst spread out like a star. I changed its shape and movement to follow the length of the blade, then worked with the team to integrate and test the effect."],
+    tools: 'Unreal Engine · Niagara · Materials',
+  },
+  {
+    number: '07', title: 'Phase Two Screen Blood Mist', date: 'October 2026',
+    paragraphs: ["I made a warm-red mist around the screen edges for the boss’s second phase, keeping the centre open for combat. A full-screen widget displays the material, and a controller handles showing and removing it.", "The first version was too faint in the scene. I adjusted its colour, opacity and edge coverage, then prepared the dependencies and controller instructions for the team to integrate and test."],
+    tools: 'Unreal Engine · Materials · UMG · Blueprint',
   },
 ]
 
@@ -123,130 +105,6 @@ function Header({ projectPage = false }) {
   )
 }
 
-function HeroBackground() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let frameId
-    let width = 0
-    let height = 0
-    const particles = Array.from({ length: 52 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.00022,
-      vy: (Math.random() - 0.5) * 0.00022,
-      size: Math.random() * 1.7 + 0.4,
-      alpha: Math.random() * 0.34 + 0.08,
-    }))
-
-    const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2)
-      width = canvas.clientWidth
-      height = canvas.clientHeight
-      canvas.width = Math.floor(width * ratio)
-      canvas.height = Math.floor(height * ratio)
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height)
-      const glow = ctx.createRadialGradient(width * 0.68, height * 0.48, 0, width * 0.68, height * 0.48, width * 0.56)
-      glow.addColorStop(0, 'rgba(201,168,76,.065)')
-      glow.addColorStop(1, 'rgba(10,10,15,0)')
-      ctx.fillStyle = glow
-      ctx.fillRect(0, 0, width, height)
-
-      particles.forEach((particle) => {
-        particle.x = (particle.x + particle.vx + 1) % 1
-        particle.y = (particle.y + particle.vy + 1) % 1
-        ctx.fillStyle = `rgba(223,189,90,${particle.alpha})`
-        ctx.beginPath()
-        ctx.arc(particle.x * width, particle.y * height, particle.size, 0, Math.PI * 2)
-        ctx.fill()
-      })
-
-      if (!reduceMotion) frameId = window.requestAnimationFrame(draw)
-    }
-
-    resize()
-    draw()
-    window.addEventListener('resize', resize)
-    return () => {
-      window.cancelAnimationFrame(frameId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
-  return <canvas className="hero-canvas" ref={canvasRef} aria-hidden="true" />
-}
-
-function Hero() {
-  return (
-    <section className="hero" id="top">
-      <img className="hero-project-image" src={`${base}last-amber-blade-slash-final.png`} alt="Last Amber boss blade slash effect inside Unreal Engine" />
-      <HeroBackground />
-      <div className="hero-shade" />
-      <div className="hero-content">
-        <p className="hero-kicker">Game Design Portfolio · 2026</p>
-        <h1 className="hero-name">Zihao Shen</h1>
-        <p className="hero-role">Game Designer · Real-time VFX Artist</p>
-        <p className="hero-description">I make gameplay systems, level prototypes and real-time effects that are easy for players to understand.</p>
-        <div className="hero-actions">
-          <a className="primary-button" href="#work">View selected work <span>→</span></a>
-          <a className="secondary-button" href="#about">About</a>
-        </div>
-      </div>
-      <p className="hero-caption">Last Amber — blade slash integration</p>
-    </section>
-  )
-}
-
-function WorkIndex() {
-  return (
-    <section className="work-index section" id="work">
-      <div className="section-kicker">Selected work</div>
-      <div className="section-intro">
-        <h2>Two projects, from early ideas to working builds.</h2>
-        <p>Last Amber focuses on real-time effects for a boss fight. Ready to Die is my ongoing Unity project, combining parkour, item collection and changes to the level after death.</p>
-      </div>
-      <div className="project-showcase">
-        <article className="featured-project">
-          <a className="featured-project-media" href="#/last-amber" aria-label="Open Last Amber case study">
-            <img src={`${base}last-amber-blade-slash-final.png`} alt="Last Amber final blade slash effect" />
-            <span>Featured project</span>
-          </a>
-          <div className="featured-project-copy">
-            <div className="featured-project-title"><span className="card-type">Unreal Engine 5 · Team Project</span><h3>Last Amber</h3></div>
-            <div className="featured-project-summary">
-              <dl>
-                <div><dt>My role</dt><dd>Real-time VFX artist</dd></div>
-                <div><dt>Main challenge</dt><dd>Keep attacks easy to see inside a dark, fog-heavy boss fight.</dd></div>
-                <div><dt>What I made</dt><dd>Fog, blade light and blade slash are in the level. The current AOE build combines a falling column, radial ground flare and volumetric impact fog.</dd></div>
-              </dl>
-              <a className="case-link" href="#/last-amber">View full case study <span>→</span></a>
-            </div>
-          </div>
-        </article>
-        <article className="secondary-project">
-          <a className="secondary-project-media" href="#/ready-to-die" aria-label="Open Ready to Die case study">
-            <img src={`${base}ready-to-die-player-view.png`} alt="Ready to Die greybox prototype viewed from behind the player character" />
-          </a>
-          <div className="secondary-project-copy">
-            <span className="card-type">Unity · Gameplay Systems</span>
-            <h3>Ready to Die</h3>
-            <p>A third-person Unity game about parkour, puzzles and discovering new paths after death. The tutorial and main Level 1 interactions are built, with Level 2 in whitebox.</p>
-            <a className="case-link" href="#/ready-to-die">View case study <span>→</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-  )
-}
-
 function ProjectHeader({ title, discipline }) {
   return (
     <div className="project-heading">
@@ -261,7 +119,6 @@ function ProjectHeader({ title, discipline }) {
 function ProjectPageShell({ children, nextHref, nextLabel }) {
   return (
     <div className="project-page">
-      <div className="project-page-aura" aria-hidden="true"><HeroBackground /><div className="project-page-shade" /></div>
       <div className="content-shell project-page-content">
         {children}
         <nav className="case-navigation" aria-label="Case study navigation">
@@ -274,20 +131,12 @@ function ProjectPageShell({ children, nextHref, nextLabel }) {
 }
 
 function ProcessStudy({ study, compact = false }) {
-  const details = [
-    ['Goal', study.goal],
-    ['My work', study.work],
-    ['Process', study.process],
-    ['Problem', study.problem],
-    ['Modification', study.changes],
-    ['Result', study.result],
-  ]
 
   return (
     <section className={`process-study${compact ? ' compact' : ''}${study.title === 'AOE Falling Attack' ? ' aoe-sequence-study' : ''}${study.title === 'Better Fog System' ? ' better-fog-study' : ''}`}>
       <header className="process-study-header">
         <div><p>{study.tools}</p><h3>{study.title}</h3></div>
-        <div className="process-status"><span>{study.date}</span><strong className={study.status.toLowerCase().includes('progress') ? 'progress' : ''}>{study.status}</strong></div>
+        <div className="process-status"><span>{study.date}</span></div>
       </header>
       {study.images && (
         <div className={`process-gallery gallery-${Math.min(study.images.length, 4)}`}>
@@ -299,9 +148,7 @@ function ProcessStudy({ study, compact = false }) {
           ))}
         </div>
       )}
-      <dl className="process-details">
-        {details.map(([label, copy]) => <div key={label}><dt>{label}</dt><dd>{copy}</dd></div>)}
-      </dl>
+      <div className="process-story">{study.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
       {study.note && <aside className="process-note"><span>{study.noteLabel || 'Player version'}</span><p>{study.note.replace('Player variant: ', '')}</p></aside>}
     </section>
   )
@@ -311,16 +158,17 @@ function LastAmber() {
   return (
     <ProjectPageShell nextHref="#/ready-to-die" nextLabel="Ready to Die">
     <article className="project section project-detail" id="last-amber">
-      <ProjectHeader title="Last Amber" discipline="Real-time VFX · Team Project" />
+      <ProjectHeader title="Last Amber" discipline="VFX design & implementation · Team project · Completed" />
       <div className="project-intro">
         <div className="intro-lead"><p>A short boss fight in a gothic hall, with clear combat effects, dark fog and red fire.</p></div>
         <dl className="facts">
           <div><dt>Engine</dt><dd>Unreal Engine 5.6.1</dd></div>
           <div><dt>Platform</dt><dd>PC</dd></div>
           <div><dt>Length</dt><dd>5–10 minute encounter</dd></div>
-          <div><dt>My role</dt><dd>VFX Artist</dd></div>
+          <div><dt>My role</dt><dd>VFX design & implementation</dd></div>
         </dl>
       </div>
+      <aside className="authorship-note"><span>My contribution</span><p>I developed the blade effects, AOE attack, player ultimate and screen blood mist, adjusted the scene fog and prepared VFX for team integration. Character, environment and gameplay work belong to the wider team and their credited asset creators.</p></aside>
       <figure className="project-opening-media">
         <img src={`${base}last-amber-blade-slash-final.png`} alt="Final red-black blade slash effect in the Last Amber encounter" />
         <figcaption>Current Unreal Engine capture — final blade slash integration</figcaption>
@@ -388,7 +236,7 @@ function LastAmber() {
           <dl><div><dt>Key features</dt><dd>Uneven horns, black armour and one burning red side make the corruption visible before the fight starts.</dd></div><div><dt>VFX link</dt><dd>Red blade energy, black outer flames and wide attacks make him feel larger and more dangerous than the player.</dd></div></dl>
         </article>
       </div>
-      <aside className="authorship-note"><span>My role</span><p>The scene and character concepts show the team’s shared art direction. My own work is the real-time VFX shown below, including the fog, blade effects and the current AOE build.</p></aside>
+      <aside className="authorship-note"><span>Team context</span><p>The scene and character concepts show the team’s shared art direction. The following studies focus on my VFX contribution and its development.</p></aside>
       <div className="case-heading">
         <span>VFX development</span>
         <p>The work below shows how I built and changed each effect, from the first test to the version used in the level.</p>
@@ -396,6 +244,7 @@ function LastAmber() {
       <div className="process-sequence">
         {amberStudies.map((study) => <ProcessStudy study={study} key={study.title} />)}
       </div>
+      <section className="process-study project-credits"><header><h3>Handover and credits</h3></header><p>I prepared effect dependencies and usage notes for the team, including how to show and remove the screen mist. The later VFX work, handover and migration checks were completed and tested.</p><p>The custom entrance fog gate was an exploration that was not used in the final game. After a crash caused work to be lost, I stopped rebuilding it within the remaining time.</p><p>Purchased resources include Fog Wall VFX and Blood Magic Skill Vfx Pack. These are third-party assets and are not presented as effects I created from scratch. Team models, animation, programming and collected visual references are also separate from my own VFX work.</p><p>AI tools assisted with visual exploration, some texture work and technical troubleshooting. I made the visual decisions and built and adjusted the materials, Niagara systems and screen-effect components in Unreal Engine.</p></section>
     </article>
     </ProjectPageShell>
   )
@@ -405,37 +254,17 @@ function ReadyToDie() {
   return <ProjectPageShell nextHref="#/last-amber" nextLabel="Last Amber"><ReadyToDieCase /></ProjectPageShell>
 }
 
-function About() {
-  return (
-    <section className="about section" id="about">
-      <div className="section-kicker">About</div>
-      <div className="about-grid">
-        <h2>Gameplay systems, level prototypes and real-time VFX.</h2>
-        <div>
-          <p>I am a third-year Game Design student at RMIT University. In Last Amber, I developed blade effects, a multi-stage AOE attack and environmental fog tests in Unreal Engine. Ready to Die is my ongoing Unity game. So far, I have built the tutorial, the main Level 1 interactions and a whitebox for Level 2.</p>
-          <a className="text-link" href="https://github.com/even002" target="_blank" rel="noreferrer">View GitHub <ArrowIcon /></a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        <Hero />
-        <div className="content-shell">
-          <WorkIndex />
-          <About />
-        </div>
-      </main>
+      <main><HomePortfolio /></main>
     </>
   )
 }
 
 function getRoute() {
+  if (window.location.hash === '#/ready-to-die/credits') return 'ready-to-die-credits'
   if (window.location.hash === '#/last-amber') return 'last-amber'
   if (window.location.hash === '#/ready-to-die') return 'ready-to-die'
   return 'home'
@@ -468,6 +297,7 @@ function App() {
       {route === 'home' && <HomePage />}
       {route === 'last-amber' && <><Header projectPage /><main><LastAmber /></main></>}
       {route === 'ready-to-die' && <><Header projectPage /><main><ReadyToDie /></main></>}
+      {route === 'ready-to-die-credits' && <><Header projectPage /><main className="project-page"><div className="content-shell project-page-content"><ReadyToDieCredits /></div></main></>}
       <footer><span>Zihao Shen</span><span>Game Design Portfolio · 2026</span></footer>
     </div>
   )

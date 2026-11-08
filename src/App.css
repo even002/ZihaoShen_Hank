@@ -3,8 +3,8 @@
   --bg-deep: #07070b;
   --surface: #11111a;
   --surface-hover: #171724;
-  --line: rgba(201, 168, 76, .14);
-  --line-strong: rgba(201, 168, 76, .34);
+  --line: rgba(236, 235, 230, .10);
+  --line-strong: rgba(236, 235, 230, .20);
   --gold: #c9a84c;
   --gold-light: #dfbd5a;
   --gold-dim: rgba(201, 168, 76, .1);
@@ -443,6 +443,59 @@ footer span:first-child { color: var(--text); }
   .scope-note { grid-template-columns: 1fr; gap: 12px; }
   .case-navigation { flex-direction: column; padding-bottom: 80px; }
   footer { flex-direction: column; gap: 10px; }
+}
+
+/* Quiet framing lets the game captures carry the colour. */
+.site-header nav a, .hero-kicker, .hero-role, .hero-caption,
+.section-kicker, .card-type, .featured-project-summary dt,
+.project-heading p, .facts dt, .case-heading span, .environment-copy > span,
+.environment-copy dt, .character-study header p, .character-study dt,
+.process-study-header p, .process-status, .process-note span,
+.authorship-note > span, .case-navigation a, figcaption {
+  text-transform: none;
+  letter-spacing: normal;
+}
+.hero-name { font-weight: 600; }
+.hero-role { font-weight: 400; line-height: 1.5; }
+.hero-kicker, .section-kicker, .card-type, .project-heading p,
+.facts dt, .featured-project-summary dt, .case-heading span,
+.process-study-header p, .process-status, .process-note span { color: var(--muted); }
+.section-kicker::before { display: none; }
+.site-header nav { gap: 24px; }
+.site-header nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.site-header .nav-cta { border-color: var(--line-strong); color: var(--text); padding: 8px 16px; }
+.site-header .nav-cta:hover { background: var(--surface); color: var(--text); }
+.primary-button:hover { transform: none; box-shadow: none; }
+.hero-project-image { animation: none; transform: none; }
+.hero-name, .hero-role, .hero-description, .hero-actions { animation: none; }
+.featured-project-media:hover img, .secondary-project-media:hover img,
+.project-card-media:hover img, .process-gallery figure:hover img { transform: none; }
+.featured-project-media img, .secondary-project-media img,
+.project-card-media img, .process-gallery img { transition: none; }
+.process-gallery figure:hover img { filter: saturate(.94) contrast(1.035); }
+.case-link:hover span { transform: none; }
+.project-detail { padding-top: 128px; }
+.project-heading { padding-bottom: 24px; }
+.project-heading h2 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 600; line-height: 1.05; letter-spacing: -.04em; }
+.project-intro { margin: 40px 0; gap: 48px; }
+.authorship-note { padding: 20px 0; gap: 24px; border-left: 0; border-block: 1px solid var(--line); background: none; }
+.process-study { border: 0; border-top: 1px solid var(--line-strong); background: none; box-shadow: none; }
+.process-study-header { padding: 24px 0; gap: 24px; border: 0; }
+.process-story { max-width: 78ch; margin: 24px 0; }
+.process-story p, .project-credits p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin: 0 0 20px; }
+.process-note { display: block; max-width: 78ch; padding: 16px 20px; border-left: 1px solid var(--line-strong); background: none; }
+.process-note span { display: block; margin-bottom: 8px; font-size: .8rem; }
+.project-credits { margin-top: 64px; padding-top: 24px; }
+.project-credits p { max-width: 78ch; }
+.project-credits h3 { font-weight: 500; font-size: 1.6rem; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 700px) {
+  .project-detail { padding-top: 112px; }
+  .project-intro { gap: 24px; }
+  .authorship-note { grid-template-columns: 1fr; gap: 12px; }
+  .process-study-header { gap: 12px; }
+  .process-status { align-items: flex-start; }
+  .site-header nav { gap: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

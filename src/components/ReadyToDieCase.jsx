@@ -1,100 +1,94 @@
 import './ReadyToDieCase.css'
 
 const media = '/ZihaoShen_Hank/assets/portfolio/'
-const chapters = [['overview','Overview'],['tutorial','Tutorial'],['level-one','Level 1'],['death-progress','Death & progress'],['level-two','Level 2'],['iteration','Development notes'],['status','Current progress'],['credits','My role & credits']]
-
-function Shot({ number, title, note, src }) {
-  return <figure className="rtd-shot">
-    {src ? <a className="rtd-image-link" href={`${media}${src}`} target="_blank" rel="noreferrer" aria-label={`View full image: ${title} (new tab)`}><img src={`${media}${src}`} alt={title} loading="lazy" /></a> : <div className="rtd-placeholder"><span>Screenshot · {number}</span><strong>{title}</strong><p>{note}</p><small>Gameplay screenshot to be added</small></div>}
-    <figcaption><strong>{title}</strong>{src && <span>{note}</span>}</figcaption>
-  </figure>
+const chapters = [['role', 'My work'], ['tutorial', 'Tutorial'], ['office', 'Office level'], ['combat', 'Floodgate'], ['ending', 'Final encounter'], ['process', 'Development'], ['credits', 'Credits']]
+function Chapter({ id, title, children }) {
+  return <section className="rtd-chapter" id={`rtd-${id}`}><header><h3>{title}</h3></header>{children}</section>
 }
-function Gallery({ title, images }) {
-  return <section className="rtd-gallery"><h4>{title}</h4><div className={`rtd-gallery-images rtd-gallery-${images.length}`}>
-    {images.map(([file, caption]) => <Shot key={file} src={`ready-to-die-${file}.png`} title={caption} />)}
-  </div></section>
+function Shot({ file, title, note }) {
+  return <figure className="rtd-shot"><a className="rtd-image-link" href={`${media}${file}`} target="_blank" rel="noreferrer" aria-label={`View full image: ${title}`}><img src={`${media}${file}`} alt={title} loading="lazy" /></a><figcaption><strong>{title}</strong><span>{note}</span></figcaption></figure>
 }
-function Chapter({ id, number, title, children }) {
-  return <section className="rtd-chapter" id={`rtd-${id}`}><header><span>{number}</span><h3>{title}</h3></header>{children}</section>
-}
-function Flow({ steps }) {
-  return <ol className="rtd-flow">{steps.map((step,i)=><li key={step}><span>{String(i+1).padStart(2,'0')}</span>{step}</li>)}</ol>
-}
-const milestones = [
-  ['Planning the game','Chose death as the main theme. Left the revival minigame for later so I could focus on the main levels first.'],
-  ['Building Level 1','Blocked out the hall, the parkour route on the right and the offices on the left. The offices connect to the hall through one central doorway.'],
-  ['Adding the interactions','Adjusted movement and added collapsing platforms, pickups, power, the computer, the safe, bomb assembly, the breakable wall and the door.'],
-  ['Building Level 2','Connected the first level to the second, blocked out the floodgate area and added two parkour sections.'],
-  ['Adding platform supports','Added bases, columns and side walls to bring the parkour areas closer to the reference image.'],
-]
-const status = [
-  ['Tutorial','Prototype built','Movement, death and respawning work. Dying in a specific area makes a bridge appear.'],
-  ['Level 1','Main interactions built','Item collection, power, the computer, the safe, crafting, the wall and the door are implemented. A full playthrough still needs testing.'],
-  ['Level transition','Connected and tested','The opening in the wall leads from Level 1 to Level 2.'],
-  ['Level 2','Whitebox','The floodgate route and two parkour sections are built. Shooting interactions are not implemented yet.'],
-  ['Weapons, enemies and ammo','Not built yet','The layout leaves room for these, but their gameplay systems are still to be made.'],
-  ['Final boss and ending','Planned','These will have their own level. Work on that scene has not started.'],
-  ['Revival minigame','For later','A simple 2D minigame is planned, where completing it earns a revival coin.'],
-  ['Changes to the hall','Concept agreed','The hall will change from worn and rusty to intact after death. This will be built once the assets are chosen.'],
-]
-
-export default function ReadyToDieCase() {
+export default function ReadyToDieComplete() {
   return <article className="project section project-detail rtd-case" id="ready-to-die" lang="en">
-    <div className="project-heading"><div><p>Unity · Third-person · Parkour & puzzles</p><h2>Ready to Die</h2></div></div>
-    <div className="rtd-intro" id="rtd-overview"><h3>A third-person game<br />about death</h3><div><p>Ready to Die is a Unity game I am making about finding a way through a flooded city. Players jump between platforms, search for items and solve puzzles. I want them to return after death and find something that was not there before: a bridge, a path or a new clue.</p><p>So far, I have built the tutorial, the main interactions in Level 1 and a whitebox for Level 2. The game is still in development. Shooting and the final boss level are next.</p></div></div>
-    <dl className="rtd-facts"><div><dt>Engine</dt><dd>Unity 6000.4.0f1</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Status</dt><dd>In development</dd></div><div><dt>Gameplay</dt><dd>Death, parkour, item collection and puzzles</dd></div></dl>
-    <nav className="rtd-index" aria-label="Case study sections">{chapters.map(([id,label])=><button type="button" onClick={() => document.getElementById(`rtd-${id}`)?.scrollIntoView({ behavior: 'smooth' })} key={id}>{label}</button>)}</nav>
-    <Shot src="ready-to-die-player-view.png" title="An early view of the tutorial" note="The player's view in the early whitebox, before replacing the placeholder assets." />
-    <Chapter id="tutorial" number="01" title="Tutorial: a bridge appears after death">
-      <p>The player wakes up with no memory in a small rooftop room. Outside, seawater has covered the city, leaving a route across the rooftops. At the end is a gap that is too wide to jump. After dying here and respawning on the starting roof, the player finds a bridge across it.</p>
-      <Flow steps={['Explore the rooftops','Reach an impossible gap','Die in the marked area','Respawn on the starting roof','Find the new bridge']} />
-      <div className="rtd-grid"><Shot src="ready-to-die-map-before-death.png" title="Before death: no way across" note="An overhead view of the tutorial in Unity." /><Shot src="ready-to-die-map-after-death.png" title="After respawning: a bridge appears" note="The yellow highlight is Unity's selection outline." /></div>
-      <p>I placed a separate death trigger below the gap. Only dying in this area makes the bridge appear; falling elsewhere does not trigger the change. When the player respawns, their movement velocity resets so they do not keep sliding or falling.</p>
-      <aside className="rtd-note">An early version changed the sky and lighting colours after death. I also want rooms, objects and paths to change, so returning to a place feels different from the first visit.</aside>
+    <div className="project-heading"><h2>Ready to Die</h2><p className="rtd-subtitle">A third-person exploration, puzzle and combat game</p></div>
+    <div className="rtd-overview">
+      <div><p>I made Ready to Die in Unity. The player wakes up in a flooded city and crosses rooftops, abandoned offices and industrial platforms before meeting another version of themselves.</p><p>Death changes parts of the route: a bridge appears across a gap, and a ruined hall returns intact. The accumulated death count also determines how many bosses the player faces at the end.</p></div>
+      <dl className="rtd-project-info"><div><dt>Project</dt><dd>Individual game project</dd></div><div><dt>Engine</dt><dd>Unity</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Scope</dt><dd>Tutorial and three main levels</dd></div></dl>
+    </div>
+    <aside className="rtd-authorship"><strong>Original ideas and design by Zihao Shen</strong><p>All creative ideas and design concepts for Ready to Die are my own. I used AI as a production assistant to help implement them, write and revise code, troubleshoot problems and support parts of the scene and visual work. I set the direction, reviewed the results and decided what to keep or change. Third-party models, animations and audio are credited separately.</p></aside>
+    <Shot file="ready-to-die-level2-environment.png" title="The flooded industrial area" note="Development capture of the dressed Level 2 environment." />
+    <nav className="rtd-index" aria-label="Case study sections">{chapters.map(([id, label]) => <button key={id} type="button" onClick={() => document.getElementById(`rtd-${id}`)?.scrollIntoView({ behavior: 'smooth' })}>{label}</button>)}</nav>
+    <Chapter id="role" title="My work">
+      <p>I developed the game concept, level layouts, puzzles and interaction flow. I also planned the environment and sound, played through sections of the game and adjusted the design when something was unclear or difficult to use.</p>
+      <p>My design work covers the flooded-city setting, the death-and-respawn rules, the order of the levels, the office puzzle, the shooting interactions and the final encounter. I also decided how the spaces should change, what information the player should see and how the ending should feel.</p>
+      <p>I described the intended behaviour, used AI assistance to help produce it, then checked it in Unity. When a result did not match my idea, I specified the changes and tested again. This included both large decisions, such as the hall changing after death, and smaller ones, such as removing an on-screen hint or lowering an explosion’s volume.</p>
     </Chapter>
-    <Chapter id="level-one" number="02" title="Level 1: find the parts and assemble a bomb">
-      <p>After the tutorial, the player enters a building. An assembly table sits in the central hall, and a wall blocks the exit. The player needs Material B from the route on the right and a timer from the offices on the left. Back in the hall, they combine the two into a bomb to open the exit.</p>
-      <Shot src="ready-to-die-level-one-overview.png" title="Level 1 layout" note="The whitebox in Unity. The central hall connects the offices and the parkour route." />
-      <div className="rtd-grid rtd-cards"><section><span className="rtd-tag">Right: parkour</span><h4>Platforms collapse after one second</h4><p>The platforms sit above toxic water, so falling means death. Some collapse one second after the player steps on them. Jumping away does not stop the countdown. Material B is at the end of this route.</p><p>Before collecting Material B, dying restores the platforms for another attempt. Once the item is collected, the player keeps it after death and the platforms no longer reset.</p></section><section><span className="rtd-tag">Left: offices</span><h4>Restore power and find the code</h4><p>The timer is locked in a safe, and its code is in a folder on the office computer. The computer starts without power. The player must find a fuse and install it in the electrical panel first.</p><p>I wanted the player to search between several rooms, so I did not add another shortcut through the offices. After collecting the timer, they return to the hall through the central doorway.</p></section></div>
-      <Flow steps={['Find the fuse','Restore power','Open the computer folder','Read the safe code','Unlock the safe and take the timer','Return to the hall and assemble the bomb']} />
-      <Gallery title="Before and after the platforms collapse" images={[[ 'platforms-before', 'The platforms form a route along the wall.' ], [ 'platforms-after', 'The platforms the player stepped on have disappeared.' ]]} />
-      <Gallery title="Finding the fuse and restoring power" images={[[ 'fuse', 'The fuse inside a room.' ], [ 'power-off', 'A red light shows that power is off.' ], [ 'power-on', 'The light turns green after the fuse is installed.' ]]} />
-      <Gallery title="Turning on the computer" images={[[ 'computer-off', 'The computer has no power.' ], [ 'computer-on', 'The screen lights up once power is restored.' ], [ 'computer-desktop', 'On the desktop, the player can open Office Records.' ]]} />
-      <Gallery title="Opening the safe and collecting the timer" images={[[ 'safe-closed', 'The locked safe.' ], [ 'safe-keypad', 'Enter the code found on the computer.' ], [ 'safe-timer', 'The open safe reveals the timer.' ]]} />
-      <h4>The computer and safe interfaces</h4><p>I used Canvas to create the computer desktop, folder window and safe keypad. The player opens Office Records to find the code, then enters it at the safe to collect the timer.</p>
-      <h4>A door unlocked from the inside</h4><p>A door at the end of the parkour route leads back to the hall. It cannot be unlocked from the hall side: the player must finish the route and unlock it from inside. After that, they can push it open with their body. It slowly closes on its own but stays unlocked. If the player dies after collecting Material B but before unlocking the door, they can still continue without returning for the item.</p>
-      <div className="rtd-grid"><Shot src="ready-to-die-assembly-table.png" title="Assembling the bomb" note="Bring Material B and the timer back to the table, then press F to assemble them." /><Shot src="ready-to-die-push-door.png" title="Pushing through the unlocked door" note="Once unlocked from inside, the door can be pushed open and does not lock again." /></div>
+    <Chapter id="tutorial" title="Learning what changes after death">
+      <p>The player wakes up in a small rooftop room. The first route introduces movement, jumping and an air dash, then ends at a gap they cannot cross.</p>
+      <p>After dying in this area and returning to the start, the player finds a bridge. Falling elsewhere does not trigger it. Passing through the same place twice lets the player notice the change themselves.</p>
+      <h4>Movement and guidance</h4>
+      <p>The player can walk, run, jump and dash in the air. During development I adjusted air steering, gravity and falling speed, and changed the dash to follow the character’s facing direction. I wanted the player to judge each landing through movement rather than rely on a long series of instructions.</p>
+      <p>I moved the basic controls onto a sign beside the starting room and removed the continuous bottom-of-screen tutorial text. The opening fade remains. A readable diary adds context without making the player stop for a separate cutscene.</p>
+      <details className="rtd-early"><summary>Early blockout: before and after death</summary><div className="rtd-grid"><Shot file="ready-to-die-map-before-death.png" title="Before death" note="Early Unity blockout, before environment dressing." /><Shot file="ready-to-die-map-after-death.png" title="The bridge appears" note="Early editor capture; the yellow outline is a selection highlight." /></div></details>
     </Chapter>
-    <Chapter id="death-progress" number="03" title="The explosion and the next respawn">
-      <p>Placing the bomb starts a three-second countdown. At first, movement was locked during this time. I removed that restriction so the player can try to run away. The explosion still kills them, however far they move. After respawning, they find the wall has opened and can leave Level 1.</p>
-      <div className="rtd-wall-story">
-        <Shot src="ready-to-die-wall-before.png" title="Placing the bomb" note="After assembly, the player brings the bomb to the blocked exit." />
-        <div className="rtd-wall-transition"><span aria-hidden="true">↓</span><div><h4>Three seconds until the explosion</h4><p>The player can move during the countdown. The explosion kills them, and they return here after respawning.</p></div></div>
-        <Shot src="ready-to-die-wall-after.png" title="After respawning, the exit is open" note="The opening stays in place and leads to Level 2." />
-      </div>
-      <div className="rtd-grid rtd-cards"><section><h4>Keeping progress after death</h4><p>I do not want players to find the fuse and look up the code every time they die. Collected items stay with them, the power stays on, and the safe and wall remain open.</p><small>This progress currently lasts through respawns in the same scene. Saving after quitting the game is not implemented yet.</small></section><section><h4>A different hall after respawning</h4><p>I want the hall to look worn and rusty on the first visit. After the explosion and respawn, it would look clean and intact. The layout would be familiar, but the room would no longer look like the place the player just left.</p><small>This is still planned. Once I choose the assets, I will replace the wall surfaces, lighting, furniture and other props together.</small></section></div>
+    <Chapter id="office" title="The office level">
+      <p>A central hall connects two routes. Collapsing platforms lead to a timer. In the offices, the player finds a fuse, restores power, reads a code on the computer and opens a cabinet containing C4. Both routes bring them back to the workbench to assemble a bomb.</p>
+      <h4>The collapsing-platform route</h4>
+      <p>Some platforms collapse one second after the player steps on them. Jumping away does not cancel that countdown. Before the timer is collected, death restores the platforms for another attempt. Once the timer has been collected, the player keeps it after death and the platforms no longer reset.</p>
+      <p>A shortcut at the end unlocks from the inside. It can then be pushed open and closes slowly, but does not lock again. The player can finish the route and return to the hall without repeating every jump.</p>
+      <h4>Restoring power in the offices</h4>
+      <p>The fuse is a small ceramic object in the maintenance room. The player has to find it and install it on the correct electrical line. This turns on the office and hall lights and supplies power to the computer. Office Records contains the code for the C4 cabinet.</p>
+      <p>The computer desktop, folder and cabinet keypad use in-game interfaces. A map identifies the rooms without giving away the password or item locations. Room labels, a maintenance note and other readable records help the player connect the spaces. Ordinary doors open when pushed and slowly close after the player stops pushing.</p>
+      <details className="rtd-early"><summary>Early computer interface</summary><Shot file="ready-to-die-computer-desktop.png" title="Office Records" note="Early interface study. The final cabinet contains C4; the timer is on the parkour route." /></details>
+      <h4 id="rtd-world">Returning after the explosion</h4>
+      <p>The bomb has a three-second countdown. The player can still move, but the explosion kills them. When they return, the hall is intact. The blocked exit has become a pair of open doors, and the workbench and maintenance note are gone.</p>
+      <Shot file="ready-to-die-restored-exit.png" title="The restored exit" note="Development capture of the intact double doors after the world change." />
+      <p>I wanted the player to recognise the room but notice that it had changed. This meant updating the objects as well as the wall materials, and removing the collisions and interactions of anything that disappeared. Completed puzzle steps stay completed, so dying does not mean searching for the same materials again.</p>
+      <p>An ordinary death leaves the workbench and note in place. The explosion is the event that changes the hall. I included the bench’s drawers, trim and radio in that change so the room would not be left with floating parts or invisible interactions. The restored exit leads to the next level, while the office map remains.</p>
+      <h4>Returning to play after death</h4>
+      <p>The screen goes black as the player dies. After respawning, the camera returns to the character before the picture fades back in. Movement velocity is reset as part of the return. This keeps the reset out of view and lets the player see the changed room when control resumes.</p>
     </Chapter>
-    <Chapter id="level-two" number="04" title="Level 2: parkour and shooting at the floodgate">
-      <p>A passage leads out of the first building to an outdoor floodgate area. I want players to see the control hub on the far side as soon as they arrive, so they know where they are heading. Water blocks the direct path, forcing them to take a longer route around it.</p>
-      <p>This level is planned to introduce a pistol for breaking bridge chains and fighting enemies. Combat will take place on large platforms, with parkour and ammunition supplies between encounters. Enemies will not attack during jumps; the next fight starts after the player lands.</p>
-      <Flow steps={['See the control hub','Pick up the pistol','Shoot to lower a bridge','Lower platform fight','Parkour A and ammo','Middle platform fight','Parkour B','Upper fight and bridge','Exit to the final level']} />
-      <aside className="rtd-note">The route and parkour whitebox are built. Weapons, enemies, ammunition and shooting interactions are not implemented yet. For now, the bridges can be crossed directly.</aside>
-      <Shot number="10" title="Level 2 layout" note="An overhead view showing the entrance, destination and route between them." />
-      <div className="rtd-grid rtd-cards"><section><span className="rtd-tag">Parkour A</span><h4>Three consecutive jumps</h4><p>Three 3 × 3 metre platforms are slightly offset, with small changes in height. The player adjusts direction between jumps and lands near the stairs. Their size follows the platforms in Level 1.</p></section><section><span className="rtd-tag">Parkour B</span><h4>Jumping up to the next floor</h4><p>Four 4 × 4 metre platforms rise by about 0.6 metres each. I kept the gaps shorter than the level jumps because the player is also gaining height. A short staircase connects the last landing to the upper platform.</p></section></div>
-      <div className="rtd-grid"><Shot number="11" title="The first parkour blockout" note="The jumping platforms before bases and supports were added." /><Shot number="12" title="With bases and supports" note="The updated platforms with their bases, columns and walls." /></div>
+    <Chapter id="combat" title="Adding shooting at the floodgate">
+      <p>The player takes a pistol from a body and shoots chains to lower a bridge. The route continues through dog encounters, ammunition supplies and parkour sections on the industrial platforms.</p>
+      <p>The pistol has two uses here: fighting and opening the route. The level combines it with the movement introduced earlier. Death returns the player to the start of this level and resets the enemies and per-life ammunition supplies.</p>
+      <p>The route includes two parkour sections between larger platforms. Five dog enemies use those spaces for encounters. Four ammunition boxes each provide ten rounds per life, so ammunition collection is part of moving through the level. I kept the chain interaction to the sound of the gunshot rather than adding another sound for every broken chain.</p>
+      <h4>Health, ammunition and weapon feedback</h4>
+      <p>The HUD shows a 100-point health bar in the top left. After the pistol is collected, a weapon display appears in the bottom right with the magazine and reserve ammunition. It updates when the player fires, reloads or collects ammunition, and health returns after respawning.</p>
+      <p>The HUD hides during reading, dialogue, death and the ending. I also removed the on-screen death counter and the first level’s material inventory list. The game still records deaths for the final encounter; hiding the number does not remove that rule.</p>
+      <p>The character uses a third-party model and movement animations, with separate pistol aiming, shooting and reloading animations adapted to it. The model and source animations are credited to their creators.</p>
     </Chapter>
-    <Chapter id="iteration" number="05" title="Recent changes">
-      <div className="rtd-grid rtd-cards"><section><h4>Jumping and dashing</h4><p>Movement in the air was too loose, and the gravity and jump distance did not feel right. I adjusted air steering, gravity and falling speed. Dashing sometimes sent the character diagonally forwards, so I changed it to follow the direction they face. Walking, running, jumping and dashing are all still available.</p><small>These changes came from problems I noticed while playing. I still need feedback from other players.</small></section><section><h4>The crafting message</h4><p>Crafting the bomb used to display a huge ASSEMBLED label across the hall. I replaced it with a short message at the bottom of the screen that disappears after a few seconds.</p></section></div>
-      <ol className="rtd-timeline">{milestones.map(([title,copy])=><li key={title}><div><h4>{title}</h4><p>{copy}</p></div></li>)}</ol>
-      <details className="rtd-early"><summary>Other ideas I considered</summary><p>Early ideas included limiting the number of steps, making enemies attack each other, searching for items while being chased, and escaping before finding a weapon to fight back. I also considered multiple worlds and endings. I decided to focus on changes after death first, so these other ideas have not been built.</p><p>The office puzzle originally involved staff records and identity checks. The current version is simpler: find a fuse, turn on the computer, read the code and collect the timer from the safe.</p></details>
+    <Chapter id="ending" title="The final encounter">
+      <p>The player meets another version of themselves. The number of bosses depends on their accumulated deaths. Dying in this fight increases the number for the next attempt.</p>
+      <p>The doors stay locked during the conversation and battle, then open after victory. On a failed attempt, the encounter is rebuilt with the bosses at full health. Two ammunition boxes each provide fifteen rounds on a twenty-second refill cycle.</p>
+      <Shot file="ready-to-die-final-encounter.png" title="The final encounter" note="Development capture of the boss formation in the final room." />
+      <p>Earlier deaths open routes; here, they affect the fight. I used this connection to carry the death mechanic from the tutorial through to the ending.</p>
+      <h4>The corridor</h4>
+      <p>After the fight and final conversation, the character walks slowly down a corridor. The player can still look around. Sea and wind fade out, ambient music comes in, and the scene fades to white with the title. I slowed this section down to give the game a quiet ending after combat.</p>
+      <p>The final dialogue keeps the question “READY TO DIE?” In the corridor, manual movement, jumping and dashing are disabled, while the camera remains under the player’s control. At the end, the character stops and the music fades out. I replaced an earlier generated audio fallback with a sourced ambient track for this sequence.</p>
+      <Shot file="ready-to-die-ending-corridor.png" title="A quiet final walk" note="Environment development capture; music and automatic walking were added afterwards." />
     </Chapter>
-    <Chapter id="status" number="06" title="Current progress">
-      <div className="rtd-status-table" role="region" aria-label="Feature progress" tabIndex="0"><table><thead><tr><th>Feature</th><th>Status</th><th>Details</th></tr></thead><tbody>{status.map(([name,state,note])=><tr key={name}><th scope="row">{name}</th><td>{state}</td><td>{note}</td></tr>)}</tbody></table></div>
-      <h4>What has been tested</h4><p>Individual checks covered incorrect safe codes, consuming materials when crafting, preventing duplicate pickups, keeping progress after death and blocking attempts to unlock the door from outside. Level 2 also had nine simulated jumps using the character's current movement settings, checking collisions and landings. All reached their targets without dashing.</p><p>These were individual checks in the editor, not a complete manual playthrough. I still need to play through each level to check camera obstruction, difficult jumps and places where the route is unclear.</p>
-      <h4>What comes next</h4><p>The next tasks are shooting and enemies in Level 2, followed by the final boss level and story ending. The revival minigame comes after those: players would complete a simple 2D game to earn a revival coin. I have considered sharing three chances across all three levels, but have not decided where the player restarts when these run out. Final assets, environmental changes and full playtesting are also still ahead.</p>
+    <Chapter id="process" title="Building and revising the game">
+      <p>The early blockout became a flooded city, damaged offices and industrial platforms. I adjusted furniture and passageways around the character’s scale, then added signs, maps and readable notes to help explain the space and tasks.</p>
+      <p>In the offices, I worked on broken windows, damaged walls and ceilings, desks, filing cabinets and scattered documents. I checked how monitors, keyboards and papers sat on the desks, and adjusted furniture that looked out of scale. In the parkour area, broken walls and a view of the flooded city give the route a setting without changing the intended jumping path.</p>
+      <h4 id="rtd-sound">Environment and sound</h4>
+      <p>Exploration mainly uses sea and wind. Indoors, they become quieter and more muffled; outside, they return. Footsteps, doors, pickups, switches, shooting and injury have their own sounds. The final corridor uses a separate ambient music track.</p>
+      <p>The nine short sound groups are gunfire, reloading, footsteps, doors, the electrical switch, pickups, explosions, dog growls and player injury. Footsteps follow the movement animation. Injury sounds vary without immediately repeating the same recording, and explosions and injury sounds stop at respawn instead of following the player into the next life.</p>
+      <p>I requested quieter explosions after trying them in the game. The sea and wind loops were edited for continuous playback, and indoor filtering reduces their volume and brightness. Scene changes keep one ambience system running rather than layering duplicate loops. The ending gradually fades that ambience away.</p>
+      <h4>Changes from playing the game</h4>
+      <ul className="rtd-revisions">
+        <li><strong>The fuse was hard to pick up.</strong> Its small size made precise aiming awkward. I adjusted pickup tolerance while keeping distance and wall checks.</li>
+        <li><strong>Text showed through walls.</strong> I changed how world-space text handles depth so labels stay behind solid surfaces.</li>
+        <li><strong>Only part of the exit triggered the next level.</strong> I expanded the trigger to cover both open doors.</li>
+        <li><strong>Some sounds arrived late.</strong> I trimmed the explosion’s quiet lead-in and aligned footsteps with the movement animation.</li>
+      </ul>
+      <h4>Ideas I chose not to include</h4>
+      <p>Earlier ideas included a revival minigame, revival coins and a limited number of chances. I also explored step limits, enemies fighting each other, searching while being chased, and multiple worlds or endings. These were design explorations, not features of the finished version. I focused the project on the four connected levels and their changes after death.</p>
+      <p>The office puzzle also became simpler during development. An earlier direction involved staff records and identity checks. The final sequence uses a fuse, power, a computer code and the C4 cabinet. Early screenshots may show different item names or placements; the current arrangement puts the timer on the parkour route and C4 in the cabinet.</p>
+      <details className="rtd-early"><summary>What the development checks cover</summary><p>Focused editor checks covered puzzle progress, duplicate pickups, incorrect codes, crafting, respawning, combat state, scene transitions, sound triggers and the corridor sequence. There were also checks for hidden objects retaining collisions and interactions after the hall changed. These checks do not establish a complete standalone-build playthrough or performance benchmark.</p></details>
     </Chapter>
-    <Chapter id="credits" number="07" title="My role and asset credits">
-      <p>I developed the game concept, level flow, puzzle design and most of the Level 1 whitebox. I work in Unity, try the interactions and adjust them based on what I find. I used AI assistance during development.</p><p>The computer currently uses a Windows default wallpaper. Most of the environment is still whitebox geometry and will be replaced with final assets.</p>
+    <Chapter id="credits" title="Assets and credits">
+      <p>All creative ideas and design concepts are my own, with AI assisting production and technical implementation. I also used third-party models, animations and recordings. Their creators, sources and uses are listed on a separate credits page.</p>
+      <a className="text-link" href="#/ready-to-die/credits">View assets and credits →</a>
     </Chapter>
   </article>
 }
