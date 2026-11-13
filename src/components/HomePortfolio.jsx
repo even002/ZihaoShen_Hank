@@ -1,6 +1,7 @@
+import PortfolioImage from './PortfolioImage'
 import './HomePortfolio.css'
 
-const media = '/ZihaoShen_Hank/assets/portfolio/'
+const media = `${import.meta.env.BASE_URL}assets/portfolio/`
 const projects = [
   {
     id: 'ready-to-die', title: 'Ready to Die', context: 'Individual project in Unity',
@@ -24,14 +25,14 @@ export default function HomePortfolio() {
   return <div className="portfolio-home content-shell">
     <section className="home-introduction" id="top" aria-labelledby="home-name">
       <div><h1 id="home-name">Zihao Shen</h1><p className="home-role">Game Designer</p></div>
-      <p className="home-bio">I study Game Design at RMIT University. These projects show my work on level layouts, puzzles and the effects I learned to make for a team game.</p>
+      <p className="home-bio">I study Game Design at RMIT University. I designed a death loop where the level only changes if you die in the right place.</p>
     </section>
 
     <section className="home-work" id="work" aria-labelledby="home-work-title">
       <h2 id="home-work-title">Selected projects</h2>
       {projects.map(project => <article className="home-project" key={project.id}>
         <a className="home-project-image" href={`#/${project.id}`} aria-label={`View ${project.title} project`}>
-          <img src={`${media}${project.image}`} alt={project.alt} loading={project.id === 'ready-to-die' ? 'eager' : 'lazy'} />
+          <PortfolioImage src={`${media}${project.image}`} alt={project.alt} loading={project.id === 'ready-to-die' ? 'eager' : 'lazy'} />
         </a>
         <div className="home-project-body">
           <p className="home-project-context">{project.context}</p>

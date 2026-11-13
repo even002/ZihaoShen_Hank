@@ -1,16 +1,32 @@
-# React + Vite
+# Zihao Shen — Game Design Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A supporting website for my game design portfolio and applications.
+It is separate from any submitted portfolio PDF or showreel.
 
-Currently, two official plugins are available:
+Live site: https://even002.github.io/ZihaoShen_Hank/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Projects
 
-## React Compiler
+- **Ready to Die:** individual Unity project; game and level design.
+- **Last Amber:** Unreal Engine team project; VFX design and implementation.
+- Each case describes decisions, revisions, personal contributions and credits.
+- Ready to Die includes a separate asset and audio credits page.
+- AI-assisted production and third-party assets are disclosed in the cases.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the Oxlint configuration
+React 19, Vite 8 and CSS. Static hosting with hash-based routes.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```sh
+pnpm install
+pnpm dev
+pnpm lint
+pnpm build
+pnpm preview
+```
+
+The build is written to `dist/`. Relative asset paths support root and subfolder hosting.
+GitHub Actions deploys pushes to `main` to GitHub Pages.
+Homepage content is in `src/components/HomePortfolio.jsx`; case content starts in `src/App.jsx` and `src/components/ReadyToDieCase.jsx`.
+Media dimensions are recorded in `src/mediaDimensions.json`; update them when replacing captures.
+Add CV, portfolio and video links only after the actual files or public URLs are available.

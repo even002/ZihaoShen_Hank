@@ -1,12 +1,14 @@
+import ReadyToDieOrigins from './ReadyToDieOrigins'
+import PortfolioImage from './PortfolioImage'
 import './ReadyToDieCase.css'
 
-const media = '/ZihaoShen_Hank/assets/portfolio/'
+const media = `${import.meta.env.BASE_URL}assets/portfolio/`
 const chapters = [['role', 'My work'], ['tutorial', 'Tutorial'], ['office', 'Office level'], ['combat', 'Floodgate'], ['ending', 'Final encounter'], ['process', 'Development'], ['credits', 'Credits']]
 function Chapter({ id, title, children }) {
   return <section className="rtd-chapter" id={`rtd-${id}`}><header><h3>{title}</h3></header>{children}</section>
 }
-function Shot({ file, title, note }) {
-  return <figure className="rtd-shot"><a className="rtd-image-link" href={`${media}${file}`} target="_blank" rel="noreferrer" aria-label={`View full image: ${title}`}><img src={`${media}${file}`} alt={title} loading="lazy" /></a><figcaption><strong>{title}</strong><span>{note}</span></figcaption></figure>
+function Shot({ file, title, note, loading = 'lazy' }) {
+  return <figure className="rtd-shot"><a className="rtd-image-link" href={`${media}${file}`} target="_blank" rel="noreferrer" aria-label={`View full image: ${title}`}><PortfolioImage src={`${media}${file}`} alt={title} loading={loading} /></a><figcaption><strong>{title}</strong><span>{note}</span></figcaption></figure>
 }
 export default function ReadyToDieComplete() {
   return <article className="project section project-detail rtd-case" id="ready-to-die" lang="en">
@@ -15,9 +17,17 @@ export default function ReadyToDieComplete() {
       <div><p>I made Ready to Die in Unity. The player wakes up in a flooded city and crosses rooftops, abandoned offices and industrial platforms before meeting another version of themselves.</p><p>Death changes parts of the route: a bridge appears across a gap, and a ruined hall returns intact. The accumulated death count also determines how many bosses the player faces at the end.</p></div>
       <dl className="rtd-project-info"><div><dt>Project</dt><dd>Individual game project</dd></div><div><dt>Engine</dt><dd>Unity</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Scope</dt><dd>Tutorial and three main levels</dd></div></dl>
     </div>
-    <aside className="rtd-authorship"><strong>Original ideas and design by Zihao Shen</strong><p>All creative ideas and design concepts for Ready to Die are my own. I used AI as a production assistant to help implement them, write and revise code, troubleshoot problems and support parts of the scene and visual work. I set the direction, reviewed the results and decided what to keep or change. Third-party models, animations and audio are credited separately.</p></aside>
-    <Shot file="ready-to-die-level2-environment.png" title="The flooded industrial area" note="Development capture of the dressed Level 2 environment." />
-    <nav className="rtd-index" aria-label="Case study sections">{chapters.map(([id, label]) => <button key={id} type="button" onClick={() => document.getElementById(`rtd-${id}`)?.scrollIntoView({ behavior: 'smooth' })}>{label}</button>)}</nav>
+    <p className="case-authorship">All ideas, design decisions and review are mine; AI assisted with code and production. <a href="#/ready-to-die/credits">Full credits</a>.</p>
+    <Shot loading="eager" file="ready-to-die-level2-environment.png" title="The flooded industrial area" note="Development capture of the dressed Level 2 environment." />
+    <nav className="rtd-reading-nav" aria-label="阅读导航" lang="zh-CN">
+      <button type="button" onClick={() => document.getElementById('rtd-origins')?.scrollIntoView()}>想法来源与设计过程</button>
+      <button type="button" onClick={() => { const details = document.getElementById('rtd-development-details'); details.open = true; details.scrollIntoView() }}>关卡与制作细节</button>
+      <a href="#/ready-to-die/credits">素材与署名</a>
+    </nav>
+    <ReadyToDieOrigins />
+    <details className="rtd-development-details" id="rtd-development-details">
+      <summary lang="zh-CN">关卡与制作细节 <span>展开查看原有英文内容</span></summary>
+    <nav className="rtd-index" aria-label="Case study sections">{chapters.map(([id, label]) => <button key={id} type="button" onClick={() => document.getElementById(`rtd-${id}`)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}>{label}</button>)}</nav>
     <Chapter id="role" title="My work">
       <p>I developed the game concept, level layouts, puzzles and interaction flow. I also planned the environment and sound, played through sections of the game and adjusted the design when something was unclear or difficult to use.</p>
       <p>My design work covers the flooded-city setting, the death-and-respawn rules, the order of the levels, the office puzzle, the shooting interactions and the final encounter. I also decided how the spaces should change, what information the player should see and how the ending should feel.</p>
@@ -86,6 +96,7 @@ export default function ReadyToDieComplete() {
       <p>The office puzzle also became simpler during development. An earlier direction involved staff records and identity checks. The final sequence uses a fuse, power, a computer code and the C4 cabinet. Early screenshots may show different item names or placements; the current arrangement puts the timer on the parkour route and C4 in the cabinet.</p>
       <details className="rtd-early"><summary>What the development checks cover</summary><p>Focused editor checks covered puzzle progress, duplicate pickups, incorrect codes, crafting, respawning, combat state, scene transitions, sound triggers and the corridor sequence. There were also checks for hidden objects retaining collisions and interactions after the hall changed. These checks do not establish a complete standalone-build playthrough or performance benchmark.</p></details>
     </Chapter>
+    </details>
     <Chapter id="credits" title="Assets and credits">
       <p>All creative ideas and design concepts are my own, with AI assisting production and technical implementation. I also used third-party models, animations and recordings. Their creators, sources and uses are listed on a separate credits page.</p>
       <a className="text-link" href="#/ready-to-die/credits">View assets and credits →</a>

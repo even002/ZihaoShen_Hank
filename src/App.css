@@ -18,7 +18,7 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); }
 a { color: inherit; }
-img { display: block; width: 100%; }
+img { display: block; width: 100%; height: auto; }
 
 .app { min-height: 100vh; overflow: hidden; }
 .content-shell,
@@ -502,3 +502,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
+/* Case summaries use the same quiet hierarchy as the process text. */
+.key-decisions { margin: 32px 0 48px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.key-decisions h3 { margin: 0 0 24px; font-size: 1.4rem; }
+.key-decisions ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.key-decisions h4 { margin: 0 0 12px; font-size: 1rem; }
+.key-decisions p, .case-authorship { color: var(--muted); line-height: 1.8; }
+.case-authorship { max-width: 80ch; margin: 24px 0 32px; }
+.process-detail { max-width: 80ch; margin-top: 20px; color: var(--muted); line-height: 1.8; }
+.process-detail summary { cursor: pointer; color: var(--text); padding: 8px 0; }
+.process-study-header .study-role { margin-top: 8px; font-size: .85rem; color: var(--muted); }
+:where(a, button, summary):focus-visible { outline: 2px solid var(--gold-light); outline-offset: 5px; }
+@media (max-width: 700px) { .key-decisions ul { grid-template-columns: 1fr; gap: 20px; } }

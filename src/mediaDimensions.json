@@ -1,0 +1,214 @@
+{
+  "aoe-sequence-01-targeting-columns.png": [
+    630,
+    564
+  ],
+  "aoe-sequence-02-warning-ring.png": [
+    629,
+    568
+  ],
+  "aoe-sequence-03-falling-column.png": [
+    631,
+    569
+  ],
+  "aoe-sequence-04-ground-impact.png": [
+    628,
+    566
+  ],
+  "better-fog-detail-noise.png": [
+    1024,
+    1024
+  ],
+  "better-fog-scene-dark-red.png": [
+    1491,
+    702
+  ],
+  "better-fog-scene-warm-grey.png": [
+    1491,
+    704
+  ],
+  "better-fog-veil.png": [
+    1024,
+    1024
+  ],
+  "better-fog-wisps.png": [
+    1024,
+    1024
+  ],
+  "die-again-game-flow.png": [
+    2737,
+    2822
+  ],
+  "die-again-graybox.png": [
+    1853,
+    1031
+  ],
+  "last-amber-aoe-falling.png": [
+    1390,
+    1259
+  ],
+  "last-amber-blade-light-final.png": [
+    1053,
+    936
+  ],
+  "last-amber-blade-light-process.jpg": [
+    579,
+    819
+  ],
+  "last-amber-blade-light-v1.png": [
+    1174,
+    1055
+  ],
+  "last-amber-blade-light-v2.png": [
+    932,
+    942
+  ],
+  "last-amber-blade-slash-final.png": [
+    1954,
+    1059
+  ],
+  "last-amber-blade-slash-impact.png": [
+    2020,
+    1079
+  ],
+  "last-amber-blade-slash-process.jpg": [
+    579,
+    819
+  ],
+  "last-amber-blade-slash-setup.png": [
+    1989,
+    1066
+  ],
+  "last-amber-blade-slash-windup.png": [
+    1985,
+    1063
+  ],
+  "last-amber-boss-concept.png": [
+    746,
+    1280
+  ],
+  "last-amber-boss-reference-board.jpg": [
+    2400,
+    3002
+  ],
+  "last-amber-environment-reference-board.jpg": [
+    3200,
+    776
+  ],
+  "last-amber-fire-fog-process.jpg": [
+    579,
+    819
+  ],
+  "last-amber-fog-final.png": [
+    1333,
+    685
+  ],
+  "last-amber-integration-process.jpg": [
+    579,
+    819
+  ],
+  "last-amber-player-concept.png": [
+    746,
+    1280
+  ],
+  "last-amber-player-reference-board.png": [
+    1280,
+    1242
+  ],
+  "last-amber-scene-design.png": [
+    2301,
+    1287
+  ],
+  "ready-to-die-assembly-table.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-computer-desktop.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-computer-off.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-computer-on.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-ending-corridor.png": [
+    900,
+    506
+  ],
+  "ready-to-die-final-encounter.png": [
+    900,
+    506
+  ],
+  "ready-to-die-fuse.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-level-one-overview.png": [
+    2560,
+    1369
+  ],
+  "ready-to-die-level2-environment.png": [
+    1000,
+    562
+  ],
+  "ready-to-die-map-after-death.png": [
+    1257,
+    622
+  ],
+  "ready-to-die-map-before-death.png": [
+    1257,
+    622
+  ],
+  "ready-to-die-platforms-after.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-platforms-before.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-player-view.png": [
+    1252,
+    625
+  ],
+  "ready-to-die-power-off.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-power-on.png": [
+    1276,
+    582
+  ],
+  "ready-to-die-push-door.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-restored-exit.png": [
+    640,
+    360
+  ],
+  "ready-to-die-safe-closed.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-safe-keypad.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-safe-timer.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-wall-after.png": [
+    1276,
+    695
+  ],
+  "ready-to-die-wall-before.png": [
+    1276,
+    695
+  ]
+}
