@@ -25,7 +25,7 @@ export default function HomePortfolio() {
   return <div className="portfolio-home content-shell">
     <section className="home-introduction" id="top" aria-labelledby="home-name">
       <div><h1 id="home-name">Zihao Shen</h1><p className="home-role">Game Designer</p></div>
-      <p className="home-bio">I study Game Design at RMIT University. I designed a death loop where the level only changes if you die in the right place.</p>
+      <p className="home-bio">I study Game Design at RMIT University. I designed a game where dying in specific places opens new routes.</p>
     </section>
 
     <section className="home-work" id="work" aria-labelledby="home-work-title">
@@ -48,7 +48,7 @@ export default function HomePortfolio() {
 
     <section className="home-about" id="about" aria-labelledby="home-about-title">
       <h2 id="home-about-title">About me</h2>
-      <div><p>I’m interested in how a level teaches the player what to do and how its rules change as they progress. Ready to Die gave me room to work on those questions across a complete game.</p>
+      <div><p>I’m interested in how a level teaches the player what to do and how its rules change as they progress. In Ready to Die, I explored how players learn a level’s rules by noticing what changes after death.</p>
       <p>For Last Amber, I learned real-time effects because the team needed them. My role changed with the project, but I kept checking how the work would look and behave during play.</p>
       <p>The case studies explain my own work, the parts developed with AI assistance, and the assets made by other creators.</p>
       <a className="home-profile-link" href="https://github.com/even002" target="_blank" rel="noreferrer">GitHub profile</a></div>

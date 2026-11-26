@@ -1,3 +1,4 @@
+import ProjectSpotlight from './ProjectSpotlight'
 import ReadyToDieOrigins from './ReadyToDieOrigins'
 import PortfolioImage from './PortfolioImage'
 import './ReadyToDieCase.css'
@@ -12,7 +13,7 @@ function Shot({ file, title, note, loading = 'lazy' }) {
 }
 export default function ReadyToDieComplete() {
   return <article className="project section project-detail rtd-case" id="ready-to-die" lang="en">
-    <div className="project-heading"><h2>Ready to Die</h2><p className="rtd-subtitle">A third-person exploration, puzzle and combat game</p></div>
+    <div className="project-heading"><h1>Ready to Die</h1><p className="rtd-subtitle">A third-person exploration, puzzle and combat game</p></div>
     <div className="rtd-overview">
       <div><p>I made Ready to Die in Unity. The player wakes up in a flooded city and crosses rooftops, abandoned offices and industrial platforms before meeting another version of themselves.</p><p>Death changes parts of the route: a bridge appears across a gap, and a ruined hall returns intact. The accumulated death count also determines how many bosses the player faces at the end.</p></div>
       <dl className="rtd-project-info"><div><dt>Project</dt><dd>Individual game project</dd></div><div><dt>Engine</dt><dd>Unity</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Scope</dt><dd>Tutorial and three main levels</dd></div></dl>
@@ -24,13 +25,13 @@ export default function ReadyToDieComplete() {
       <button type="button" onClick={() => { const details = document.getElementById('rtd-development-details'); details.open = true; details.scrollIntoView() }}>关卡与制作细节</button>
       <a href="#/ready-to-die/credits">素材与署名</a>
     </nav>
+    <ProjectSpotlight project="rtd" />
     <ReadyToDieOrigins />
     <details className="rtd-development-details" id="rtd-development-details">
       <summary lang="zh-CN">关卡与制作细节 <span>展开查看原有英文内容</span></summary>
     <nav className="rtd-index" aria-label="Case study sections">{chapters.map(([id, label]) => <button key={id} type="button" onClick={() => document.getElementById(`rtd-${id}`)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}>{label}</button>)}</nav>
     <Chapter id="role" title="My work">
-      <p>I developed the game concept, level layouts, puzzles and interaction flow. I also planned the environment and sound, played through sections of the game and adjusted the design when something was unclear or difficult to use.</p>
-      <p>My design work covers the flooded-city setting, the death-and-respawn rules, the order of the levels, the office puzzle, the shooting interactions and the final encounter. I also decided how the spaces should change, what information the player should see and how the ending should feel.</p>
+      <p>I designed the flooded-city setting, level layouts and progression, including the death-and-respawn rules, office puzzle, shooting interactions and final encounter. I planned the environment and sound, the changes after death, the information shown to the player and the pace of the ending. I played through sections and revised anything that was unclear or difficult to use.</p>
       <p>I described the intended behaviour, used AI assistance to help produce it, then checked it in Unity. When a result did not match my idea, I specified the changes and tested again. This included both large decisions, such as the hall changing after death, and smaller ones, such as removing an on-screen hint or lowering an explosion’s volume.</p>
     </Chapter>
     <Chapter id="tutorial" title="Learning what changes after death">
@@ -71,7 +72,7 @@ export default function ReadyToDieComplete() {
       <p>The player meets another version of themselves. The number of bosses depends on their accumulated deaths. Dying in this fight increases the number for the next attempt.</p>
       <p>The doors stay locked during the conversation and battle, then open after victory. On a failed attempt, the encounter is rebuilt with the bosses at full health. Two ammunition boxes each provide fifteen rounds on a twenty-second refill cycle.</p>
       <Shot file="ready-to-die-final-encounter.png" title="The final encounter" note="Development capture of the boss formation in the final room." />
-      <p>Earlier deaths open routes; here, they affect the fight. I used this connection to carry the death mechanic from the tutorial through to the ending.</p>
+      <p>Earlier deaths open routes; here, they affect the fight.</p>
       <h4>The corridor</h4>
       <p>After the fight and final conversation, the character walks slowly down a corridor. The player can still look around. Sea and wind fade out, ambient music comes in, and the scene fades to white with the title. I slowed this section down to give the game a quiet ending after combat.</p>
       <p>The final dialogue keeps the question “READY TO DIE?” In the corridor, manual movement, jumping and dashing are disabled, while the camera remains under the player’s control. At the end, the character stops and the music fades out. I replaced an earlier generated audio fallback with a sourced ambient track for this sequence.</p>
@@ -81,8 +82,8 @@ export default function ReadyToDieComplete() {
       <p>The early blockout became a flooded city, damaged offices and industrial platforms. I adjusted furniture and passageways around the character’s scale, then added signs, maps and readable notes to help explain the space and tasks.</p>
       <p>In the offices, I worked on broken windows, damaged walls and ceilings, desks, filing cabinets and scattered documents. I checked how monitors, keyboards and papers sat on the desks, and adjusted furniture that looked out of scale. In the parkour area, broken walls and a view of the flooded city give the route a setting without changing the intended jumping path.</p>
       <h4 id="rtd-sound">Environment and sound</h4>
-      <p>Exploration mainly uses sea and wind. Indoors, they become quieter and more muffled; outside, they return. Footsteps, doors, pickups, switches, shooting and injury have their own sounds. The final corridor uses a separate ambient music track.</p>
-      <p>The nine short sound groups are gunfire, reloading, footsteps, doors, the electrical switch, pickups, explosions, dog growls and player injury. Footsteps follow the movement animation. Injury sounds vary without immediately repeating the same recording, and explosions and injury sounds stop at respawn instead of following the player into the next life.</p>
+      <p>Sea and wind accompany exploration. They become quieter and more muffled indoors, then return outside. The final corridor uses a separate ambient music track.</p>
+      <p>Footsteps follow the movement animation. Injury sounds vary without immediately repeating the same recording, and explosions and injury sounds stop at respawn. The full sound list and sources are in <a href="#/ready-to-die/credits">Assets and credits</a>.</p>
       <p>I requested quieter explosions after trying them in the game. The sea and wind loops were edited for continuous playback, and indoor filtering reduces their volume and brightness. Scene changes keep one ambience system running rather than layering duplicate loops. The ending gradually fades that ambience away.</p>
       <h4>Changes from playing the game</h4>
       <ul className="rtd-revisions">

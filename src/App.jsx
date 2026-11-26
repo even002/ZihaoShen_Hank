@@ -1,10 +1,12 @@
+import ProjectSpotlight from './components/ProjectSpotlight'
 import PortfolioImage from './components/PortfolioImage'
 import { useEffect, useState } from 'react'
 import './App.css'
 import ReadyToDieCase from './components/ReadyToDieCase'
 import ReadyToDieCredits from './components/ReadyToDieCredits'
-import HomePortfolio from './components/HomePortfolio'
+import CinematicHome from './components/CinematicHome'
 import KeyDecisions from './components/KeyDecisions'
+import './CinematicTheme.css'
 
 const base = `${import.meta.env.BASE_URL}assets/portfolio/`
 
@@ -25,7 +27,7 @@ const amberStudies = [
     title: 'Blade Light',
     guide: 'Compare the white-core test with the red-black version after the texture and palette were rebuilt.',
     date: '03–10 Aug 2026',
-    paragraphs: ["I made the blade mask, material, mesh and Niagara trail, then adjusted them to the attack animation. A bright centre and dark-red edge helped the trail show the direction of the swing.", "The first version had broken pieces at the tail, visible stripes and a grey ghost image. I rebuilt the texture and changed the palette to red and black. The images show that change from the white-core test to the final version."],
+    paragraphs: ["I made the blade mask, material, mesh and Niagara trail, then adjusted them to the attack animation. A bright centre and dark-red edge helped the trail show the direction of the swing.", "The first version had broken pieces at the tail, visible stripes and a grey ghost image. I rebuilt the texture and changed the palette to red and black."],
     tools: 'Unreal Engine · Niagara · Materials',
     images: [
       { src: `${base}last-amber-blade-light-v1.png`, label: 'First version · white-core silhouette test' },
@@ -70,7 +72,7 @@ const amberStudies = [
     title: 'Better Fog System',
     guide: 'Compare the warm-grey and dark-red scene tests while checking the player, nearby fire and distant attacks.',
     date: 'October 2026',
-    paragraphs: ["My final work on Better Fog focused on the scene’s colour, density and visibility. I compared warm-grey and dark-red versions while checking whether the player, nearby fire and distant attacks remained readable.", "Earlier texture tests looked too much like rolling smoke. I tried softer veils and ground wisps, then adjusted the scene fog around the existing lighting. The images here show those development comparisons."],
+    paragraphs: ["My final work on Better Fog focused on the scene’s colour, density and visibility. I compared warm-grey and dark-red versions while checking whether the player, nearby fire and distant attacks remained readable.", "Earlier texture tests looked too much like rolling smoke. I tried softer veils and ground wisps, then adjusted the scene fog around the existing lighting."],
     tools: 'Unreal Engine 5.6 · Niagara · Blueprint · Volumetric Fog',
     images: [
       { src: `${base}better-fog-veil.png`, label: 'Main veil texture · broad, low-contrast fog layer' },
@@ -120,7 +122,7 @@ function ProjectHeader({ title, discipline }) {
     <div className="project-heading">
       <div>
         <p>{discipline}</p>
-        <h2>{title}</h2>
+        <h1>{title}</h1>
       </div>
     </div>
   )
@@ -185,10 +187,11 @@ function LastAmber() {
         <PortfolioImage src={`${base}last-amber-blade-slash-final.png`} alt="Final red-black blade slash effect in the Last Amber encounter" loading="eager" />
         <figcaption>Current Unreal Engine capture — final blade slash integration</figcaption>
       </figure>
+      <ProjectSpotlight project="amber" />
       <KeyDecisions items={[
         ['Give the ground impact volume', 'Sprites and crossed planes looked flat. For the AOE impact, I used a cylindrical mesh and displaced its lower vertices outward to join the falling column to the ground spread.'],
-        ['Give the ultimate a connection to the weapon', 'The early ultimate was an overhead beam. I changed it to an enlarged sword and redirected the burst along the blade.'],
-        ['Leave room to read combat', 'The second-phase screen mist needed to change the mood without covering the fight. I placed the warm-red mist around the edges and kept the centre open.'],
+        ['Changing the ultimate from a beam to a sword', 'The early ultimate was an overhead beam. I changed it to an enlarged sword and redirected the burst along the blade.'],
+        ['Keeping the centre of the screen clear', 'The second-phase screen mist needed to change the mood without covering the fight. I placed the warm-red mist around the edges and kept the centre open.'],
       ]} />
       <div className="case-heading">
         <span>Scene design</span>
@@ -274,8 +277,7 @@ function ReadyToDie() {
 function HomePage() {
   return (
     <>
-      <Header />
-      <main><HomePortfolio /></main>
+      <CinematicHome />
     </>
   )
 }
@@ -298,24 +300,30 @@ function App() {
 
   useEffect(() => {
     if (route !== 'home') {
-      window.scrollTo({ top: 0, behavior: 'auto' })
+      window.scrollTo({ top: 0, behavior: 'instant' })
       return
     }
     const targetId = window.location.hash.replace('#', '')
     window.requestAnimationFrame(() => {
       const target = targetId && document.getElementById(targetId)
       if (target) target.scrollIntoView({ behavior: 'auto' })
-      else window.scrollTo({ top: 0, behavior: 'auto' })
+      else window.scrollTo({ top: 0, behavior: 'instant' })
     })
+  }, [route])
+
+  useEffect(() => {
+    const titles = { home: 'Zihao Shen | Game Design Portfolio', 'ready-to-die': 'Ready to Die | Zihao Shen', 'last-amber': 'Last Amber | Zihao Shen', 'ready-to-die-credits': 'Assets and credits | Ready to Die' }
+    document.title = titles[route]
   }, [route])
 
   return (
     <div className="app">
+      <a className="skip-link" href="#main-content" onClick={(event) => { event.preventDefault(); const main = document.getElementById('main-content'); main?.focus(); main?.scrollIntoView() }}>Skip to content</a>
       {route === 'home' && <HomePage />}
-      {route === 'last-amber' && <><Header projectPage /><main><LastAmber /></main></>}
-      {route === 'ready-to-die' && <><Header projectPage /><main><ReadyToDie /></main></>}
-      {route === 'ready-to-die-credits' && <><Header projectPage /><main className="project-page"><div className="content-shell project-page-content"><ReadyToDieCredits /></div></main></>}
-      <footer><span>Zihao Shen</span><span>Game Design Portfolio · 2026</span></footer>
+      {route === 'last-amber' && <><Header projectPage /><main id="main-content" tabIndex={-1}><LastAmber /></main></>}
+      {route === 'ready-to-die' && <><Header projectPage /><main id="main-content" tabIndex={-1}><ReadyToDie /></main></>}
+      {route === 'ready-to-die-credits' && <><Header projectPage /><main id="main-content" tabIndex={-1} className="project-page"><div className="content-shell project-page-content"><ReadyToDieCredits /></div></main></>}
+      {route !== 'home' && <footer><span>Zihao Shen</span><span>Game Design Portfolio · 2026</span></footer>}
     </div>
   )
 }

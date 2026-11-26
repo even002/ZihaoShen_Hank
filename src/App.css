@@ -140,7 +140,7 @@ footer { width: min(calc(100% - 64px), var(--max)); margin-inline: auto; }
 .project-heading { position: relative; padding: 0 0 34px; border-bottom: 1px solid var(--line); }
 .project-heading p { color: var(--gold); font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; }
 .project-heading p { margin: 0 0 12px; }
-.project-heading h2 { margin: 0; font-size: clamp(4.2rem, 10vw, 9.2rem); font-weight: 650; letter-spacing: -.07em; line-height: .84; }
+.project-heading :is(h1,h2) { margin: 0; font-size: clamp(4.2rem, 10vw, 9.2rem); font-weight: 650; letter-spacing: -.07em; line-height: .84; }
 .heading-rune { align-self: center; padding-right: 18px; color: rgba(201,168,76,.18); font-family: Georgia, serif; font-size: clamp(4rem, 8vw, 7rem); }
 .project-intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 90px; margin: 70px 0; }
 .intro-lead { font-size: clamp(1.55rem, 2.6vw, 2.45rem); line-height: 1.35; letter-spacing: -.025em; }
@@ -404,7 +404,7 @@ footer span:first-child { color: var(--text); }
   .project-card-media, .project-card-media img { min-height: 250px; }
   .project-card-copy { padding: 22px 0; }
   .project-heading { padding-left: 0; }
-  .project-heading h2 { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .project-heading :is(h1,h2) { font-size: clamp(3rem, 15vw, 4.4rem); }
   .project-intro { margin: 48px 0; }
   .case-heading { grid-template-columns: 1fr; gap: 14px; margin-top: 74px; }
   .process-sequence { gap: 44px; }
@@ -476,7 +476,7 @@ footer span:first-child { color: var(--text); }
 .case-link:hover span { transform: none; }
 .project-detail { padding-top: 128px; }
 .project-heading { padding-bottom: 24px; }
-.project-heading h2 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 600; line-height: 1.05; letter-spacing: -.04em; }
+.project-heading :is(h1,h2) { font-size: clamp(3rem, 7vw, 6rem); font-weight: 600; line-height: 1.05; letter-spacing: -.04em; }
 .project-intro { margin: 40px 0; gap: 48px; }
 .authorship-note { padding: 20px 0; gap: 24px; border-left: 0; border-block: 1px solid var(--line); background: none; }
 .process-study { border: 0; border-top: 1px solid var(--line-strong); background: none; box-shadow: none; }
